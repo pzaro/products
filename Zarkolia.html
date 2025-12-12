@@ -200,19 +200,10 @@
         
         .image-wrapper img { width: 100%; height: 100%; object-fit: contain; }
 
-        /* Modified Cover Layout for Centered Content */
-        .cover-layout-center {
-            text-align: center;
-            padding: 40px;
-            border-top: 10px solid #0284c7;
-            border-bottom: 10px solid #0284c7;
-            border-radius: 8px;
-            background-color: #f8fafc;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
+        .cover-layout {
+            text-align: left;
+            padding-left: 40px;
+            border-left: 10px solid #0284c7;
         }
         .cover-subtitle {
             font-size: 24px;
@@ -802,7 +793,7 @@
 </div>
 
 <script>
-    const apiKey = "AIzaSyDOxurXB1mkAlrGjfMNEV0WlaSMcMIuqLY"; // Set by environment
+    const apiKey = "AIzaSyDOxurXB1mkAlrGjfMNEV0WlaSMcMIuqLY"; // Your specific key
 
     // --- NAVIGATION LOGIC ---
     let currentSlide = 0;
@@ -894,6 +885,13 @@
         const messageText = input.value.trim();
         
         if (!messageText) return;
+        
+        if (!apiKey) {
+           addMessage(messageText, 'user');
+           addMessage("Για να λειτουργήσει ο AI βοηθός στο Netlify, πρέπει να προσθέσετε το Google Gemini API Key στον κώδικα (γραμμή 394).", 'bot');
+           input.value = '';
+           return;
+        }
 
         addMessage(messageText, 'user');
         input.value = '';
@@ -906,7 +904,7 @@
             addMessage(response, 'bot');
         } catch (error) {
             document.getElementById(loadingId).remove();
-            addMessage('Συγγνώμη, παρουσιάστηκε ένα σφάλμα. Παρακαλώ δοκιμάστε ξανά.', 'bot');
+            addMessage('Συγγνώμη, παρουσιάστηκε ένα σφάλμα. Ελέγξτε το API Key.', 'bot');
             console.error(error);
         }
     }
@@ -962,7 +960,7 @@
             Απάντησε στην ερώτηση του χρήστη στα Ελληνικά.
         `;
 
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
         
         const payload = {
             contents: [{
