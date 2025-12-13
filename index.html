@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zarkolia Health Scientific Presentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* 1. SETUP & THEME */
+        * { box-sizing: border-box; }
+        
+        body {
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            color: #334155;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* SCALER WRAPPER */
+        #scaler {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform-origin: center center;
+        }
+
+        .slide-container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            height: 720px;
+            justify-content: center;
+            overflow: hidden;
+            padding: 60px;
+            position: absolute; /* Stack on top of each other */
+            top: 0;
+            left: 0;
+            width: 1280px;
+            border-top: 8px solid #0284c7;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .slide-container.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* 2. TYPOGRAPHY */
+        h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 58px;
+            font-weight: 700;
+            color: #0284c7;
+            margin: 0;
+        }
+
+        .slide-title {
+            font-family: 'Merriweather', serif;
+            font-size: 42px;
+            color: #0f172a;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 15px;
+            width: 100%;
+        }
+
+        h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #0369a1;
+            margin-bottom: 10px;
+        }
+
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #475569;
+        }
+
+        a {
+            color: #0284c7;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+            cursor: pointer;
+            z-index: 100;
+            position: relative;
+        }
+        a:hover {
+            border-bottom-color: #0284c7;
+        }
+
+        /* 3. LAYOUT UTILITIES */
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: center;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            height: 100%;
+        }
+
+        .three-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+            align-items: stretch;
+            width: 100%;
+        }
+
+        /* 4. COMPONENT STYLES */
+        .ing-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .ing-card:hover {
+            border-color: #0284c7;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .ing-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .ing-icon { color: #0284c7; font-size: 24px; }
+        .mechanism-text { font-size: 16px; margin-bottom: 15px; }
+
+        .evidence-box {
+            background-color: #f0f9ff;
+            border-left: 4px solid #0284c7;
+            padding: 12px 15px;
+            font-size: 14px;
+            color: #334155;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .evidence-title {
+            font-weight: 700;
+            color: #0c4a6e;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .citation {
+            font-style: italic;
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 5px;
+            display: block;
+        }
+
+        .image-wrapper {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            height: 100%;
+            max-height: 550px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+        }
+        
+        .image-wrapper img { width: 100%; height: 100%; object-fit: contain; }
+
+        .cover-layout {
+            text-align: left;
+            padding-left: 40px;
+            border-left: 10px solid #0284c7;
+        }
+        .cover-subtitle {
+            font-size: 24px;
+            color: #64748b;
+            margin-top: 20px;
+            font-weight: 300;
+        }
+
+        .medical-list { list-style: none; padding: 0; }
+        .medical-list li { position: relative; padding-left: 25px; margin-bottom: 12px; }
+        .medical-list li::before {
+            content: '\f058'; 
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #0284c7;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #0284c7;
+            color: white !important;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(2, 132, 199, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+        .cta-button:hover { background-color: #0369a1; transform: translateY(-2px); transition: all 0.2s; }
+
+        /* --- NAVIGATION CONTROLS --- */
+        .nav-controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 12px 25px;
+            border-radius: 50px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            z-index: 10000;
+            border: 1px solid #e2e8f0;
+            backdrop-filter: blur(5px);
+        }
+
+        .nav-btn {
+            background: #0284c7;
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            font-size: 18px;
+        }
+
+        .nav-btn:hover { background: #0369a1; transform: scale(1.1); }
+        .nav-btn:disabled { background: #cbd5e1; cursor: not-allowed; transform: none; opacity: 0.5; }
+
+        .slide-counter {
+            font-weight: 700;
+            color: #334155;
+            font-size: 16px;
+            min-width: 80px;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* --- AI ASSISTANT STYLES --- */
+        .ai-fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0284c7, #0ea5e9);
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10001;
+            border: none;
+            transition: transform 0.3s;
+        }
+        .ai-fab:hover { transform: scale(1.1); }
+        .ai-fab i { color: white; font-size: 24px; }
+
+        .chat-widget {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 380px;
+            height: 500px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            z-index: 10001;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .chat-header {
+            background: #0284c7;
+            padding: 15px 20px;
+            color: white;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-close {
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.8);
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .chat-messages {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .message.bot {
+            background: white;
+            border-bottom-left-radius: 2px;
+            color: #334155;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            align-self: flex-start;
+        }
+
+        .message.user {
+            background: #0284c7;
+            color: white;
+            border-bottom-right-radius: 2px;
+            align-self: flex-end;
+        }
+
+        .chat-input-area {
+            padding: 15px;
+            background: white;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex-grow: 1;
+            border: 1px solid #cbd5e1;
+            border-radius: 20px;
+            padding: 10px 15px;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .chat-input:focus {
+            border-color: #0284c7;
+        }
+
+        .send-btn {
+            background: #0284c7;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .send-btn:hover {
+            background: #0369a1;
+        }
+
+        /* Centered Cover Layout */
+        .cover-layout-center {
+            text-align: center;
+            padding: 40px;
+            border-top: 10px solid #0284c7;
+            border-bottom: 10px solid #0284c7;
+            border-radius: 8px;
+            background-color: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 80%; /* Limit width */
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="scaler">
+
+    <!-- Slide 1: Cover (Centered, Logo Only) -->
+    <div class="slide-container active">
+        <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+            <div class="cover-layout-center">
+                <!-- LOGO: From GitHub Raw -->
+                <img src="https://raw.githubusercontent.com/pzaro/zarkolia-images/4a524e2cb6c9020b5c71bb72f208e78a3d2a9904/zarkolia%20new%20logo.jpg" alt="Zarkolia Logo" style="width: 350px; margin-bottom: 30px;">
+                
+                <p style="color: #0284c7; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px;">Medical Affairs Department</p>
+                <h1 style="margin: 0; font-size: 64px;">Clinical Dossier</h1>
+                <p class="cover-subtitle">Evidence-Based Ανάλυση Δραστικών Συστατικών & Μηχανισμοί Δράσης</p>
+                <div style="margin-top: 50px; font-size: 18px; color: #475569;">
+                    <strong>Θεραπευτικές Κατηγορίες:</strong><br>
+                    Ανοσοποιητικό • Επούλωση • Αναπνευστικό • Δερμοκαλλυντικά
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Z-BOOST Intro -->
+    <div class="slide-container">
+        <h2 class="slide-title">Z-BOOST: Πολυδύναμη Κυτταρική Προστασία</h2>
+        <div class="content-area">
+            <div class="two-column">
+                <div>
+                    <h3>Θεραπευτικοί Στόχοι</h3>
+                    <ul class="medical-list">
+                        <li><strong>Διαβητική Νευροπάθεια:</strong> Το ALA μειώνει το οξειδωτικό στρες στα νεύρα και βελτιώνει την μικροκυκλοφορία.</li>
+                        <li><strong>Λιπώδης Διήθηση:</strong> Η NAC ενισχύει την ηπατική αποτοξίνωση (Γλουταθειόνη).</li>
+                        <li><strong>Ιογενείς Λοιμώξεις:</strong> Ενίσχυση Τ-λεμφοκυττάρων (Zn+Se).</li>
+                        <li><strong>Ναυτία & Φλεγμονή:</strong> Το Ginger μειώνει τις προσταγλανδίνες.</li>
+                    </ul>
+                    <div class="evidence-box" style="margin-top: 30px;">
+                        <span class="evidence-title">Κλινική Συνέργεια</span>
+                        Ο συνδυασμός <strong>NAC + ALA + Q10</strong> παρέχει τριπλή προστασία: κυτταρική ενέργεια, νευροπροστασία και ηπατική υγεία.
+                    </div>
+                </div>
+                <div class="image-wrapper">
+                    <!-- IMAGE: Z-Boost 30 -->
+                    <img src="https://raw.githubusercontent.com/pzaro/zarkolia-images/main/Zboost%2030%20%CF%86%CE%BF%CE%BD%CF%84%CE%BF.jpg" alt="Z-Boost Capsules">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Z-BOOST Ingredients & Evidence -->
+    <div class="slide-container">
+        <h2 class="slide-title">Z-BOOST: Τεκμηρίωση Συστατικών</h2>
+        <div class="content-area">
+            <div class="three-column">
+                <!-- NAC -->
+                <div class="ing-card">
+                    <div class="ing-header">
+                        <i class="fa-solid fa-lungs ing-icon"></i>
+                        <h3>NAC</h3>
+                    </div>
+                    <p class="mechanism-text"><strong>N-Acetyl Cysteine:</strong> Βλεννολυτικό, πρόδρομος Γλουταθειόνης. Προστατεύει ήπαρ και πνεύμονες.</p>
+                    <div class="evidence-box">
+                        <span class="evidence-title">PubMed Evidence</span>
+                        "NAC administration restores glutathione levels and improves immune function."
+                        <a href="https://pubmed.ncbi.nlm.nih.gov/9230243/" target="_blank" class="citation">De Flora et al. Eur Respir J</a>
+                    </div>
+                </div>
+                
+                <!-- ALA -->
+                <div class="ing-card">
+                    <div class="ing-header">
+                        <i class="fa-solid fa-bolt ing-icon"></i>
+                        <h3>ALA</h3>
+                    </div>
+                    <p class="mechanism-text"><strong>Alpha-Lipoic Acid:</strong> Αντιοξειδωτικό που διαπερνά τον αιματοεγκεφαλικό φραγμό. Μειώνει τον νευροπαθητικό πόνο.</p>
+                    <div class="evidence-box">
+                        <span class="evidence-title">SYDNEY Trial</span>
+                        "ALA reduced Total Symptom Score by 50% in diabetic polyneuropathy."
+                        <a href="https://pubmed.ncbi.nlm.nih.gov/17065669/" target="_blank" class="citation">Ziegler et al. Diabetes Care</a>
+                    </div>
+                </div>
+
+                <!-- CoQ10 & Zn/Se -->
+                <div class="ing-card">
+                    <div class="ing-header">
+                        <i class="fa-solid fa-shield-virus ing-icon"></i>
+                        <h3>CoQ10 & Zn/Se</h3>
+                    </div>
+                    <p class="mechanism-text">Παραγωγή μιτοχονδριακής ενέργειας (ATP) και αναστολή ιικού πολλαπλασιασμού.</p>
+                    <div class="evidence-box">
+                        <span class="evidence-title">Antiviral Action</span>
+                        "Zinc acts as a direct inhibitor of viral polymerase activity."
+                        <a href="https://pubmed.ncbi.nlm.nih.gov/21079686/" target="_blank" class="citation">Te Velthuis et al. PLoS Pathog</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: ZPLAST Intro -->
+    <div class="slide-container">
+        <h2 class="slide-title">ZPLAST CREAM: Διαχείριση Τραύματος</h2>
+        <div class="content-area">
+            <div class="two-column">
+                <div class="image-wrapper">
+                    <!-- IMAGE: Zplast -->
+                    <img src="https://raw.githubusercontent.com/pzaro/zarkolia-images/main/zplast%20%CE%BC%CE%B5%20%CF%86%CE%BF%CE%BD%CF%84%CE%BF.jpg" alt="Zplast Cream">
+                </div>
+                <div>
+                    <h3>Φάσμα Ενδείξεων</h3>
+                    <ul class="medical-list">
+                        <li><strong>Εγκαύματα:</strong> Θερμικά, χημικά, ηλιακά (1ου & 2ου βαθμού).</li>
+                        <li><strong>Χειρουργικές Τομές:</strong> Πρόληψη επιμόλυνσης και μείωση ουλών.</li>
+                        <li><strong>Έλκη & Κατακλίσεις:</strong> Ενίσχυση κοκκιοποίησης.</li>
+                        <li><strong>Δερματίτιδες:</strong> Ανακούφιση λόγω Καλαμίνης & Zea Mays.</li>
+                    </ul>
+                    <div style="margin-top:20px;">
+                        <strong>Ενεργά Συστατικά:</strong> Mastic Gum, Honey, Hypericum, Calendula, Sea Buckthorn (Ω-7), Avocado, Calamine, Zea Mays, Arnica.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: ZPLAST Mechanisms Part 1 -->
+    <div class="slide-container">
+        <h2 class="slide-title">ZPLAST: Μηχανισμοί Επούλωσης (Ι)</h2>
+        <div class="content-area">
+            <div class="three-column">
+                <!-- Hypericum -->
+                <div class="ing-card">
+                    <div class="ing-header">
+                        <i class="fa-solid fa-leaf ing-icon"></i>
+                        <h3>Hypericum</h3>
+                    </div>
+                    <p class="mechanism-text"><strong>Βαλσαμόχορτο:</strong> Διεγείρει τον πολλαπλασιασμό των ινοβλαστών και την παραγωγή κολλαγόνου.</p>
+                    <div class="evidence-box">
+                        <span class="evidence-title">Wound Closure</span>
+                        "Hypericum extract accelerates wound closure and tensile strength."
+                        <a href="https://pubmed.ncbi.nlm.nih.gov/19833187/" target="_blank" class="citation">Suntar et al. J Ethnopharmacol</a>
+                    </div>
+                </div>
+
+                <!-- Mastic & Honey -->
+                <div class="ing-card">
+                    <div class="ing-header">
+                        <i class="fa-solid fa-shield-halved ing-icon"></i>
+                        <h3>Mastic & Honey</h3>
+                    </div>
+                    <p class="mechanism-text"><strong>Μαστίχα & Μέλι:</strong> Δημιουργία αντιμικροβιακού βιο-υμενίου. Δράση έναντι S. aureus.</p>
+                    <div class="evidence-box">
+                        <span class="evidence-title">Antimicrobial</span>
+                        "Inhibits growth of Gram-positive and Gram-negative bacteria."
+                        <a href="https://pubmed.ncbi.nlm.nih.gov/22414110/" target="_blank" class="citation">Paraschos et al.</a>
+                    </div>
+                </div>
+
+                <!-- Arnica -->
+                <div class="ing-card">
+                    <div class="ing-header">
+                        <i class="fa-solid fa-hand-holding-medical ing-icon"></i>
+                        <h3>Arnica</h3>
+                    </div>
+                    <p class="mechanism-text"><strong>Αντιφλεγμονώδες:</strong> Μείωση του μετεγχειρητικού οιδήματος και του πόνου.</p>
+                    <div class="evidence-box">
+                        <span class="evidence-title">Anti-inflammatory</span>
+                        "Helenalin suppresses NF-κB activation."
+                        <a href="https://pubmed.ncbi.nlm.nih.gov/9348104/" target="_blank" class="citation">Lyss et al. Biol Chem</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: ZPLAST Mechanisms Part 2 -->
+    <div class="slide-container">
+        <h2 class="slide-title">ZPLAST: Καταπράυνση & Φραγμός (ΙΙ)</h2>
+        <div class="content-area">
+            <div class="two-column">
+                <div>
+                    <h3>Ανάπλαση Φραγμού</h3>
+                    <ul class="medical-list">
+                        <li><strong>Ιπποφαές (Sea Buckthorn):</strong> Πλούσιο σε Ωμέγα-7, απαραίτητο για την επιθηλιοποίηση και την ελαστικότητα.</li>
+                        <li><strong>Αβοκάντο:</strong> Παρέχει βιταμίνες A, D, E για βαθιά θρέψη και μείωση του σχηματισμού χηλοειδών.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Ανακούφιση Συμπτωμάτων</h3>
+                    <ul class="medical-list">
+                        <li><strong>Καλαμίνη & Zea Mays:</strong> Άμεση αντικνησμώδης δράση και απορρόφηση της υγρασίας (ιδανικό για εξιδρωματικά τραύματα).</li>
+                        <li><strong>Καλέντουλα:</strong> Καταπραϋντική δράση σε ερεθισμένο δέρμα.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="evidence-box" style="margin-top: 30px; text-align: center;">
+                <span class="evidence-title">Συνδυαστική Δράση</span>
+                Κάλυψη και των 3 φάσεων: <strong>Φλεγμονή (Arnica/Honey), Πολλαπλασιασμός (Hypericum/Mastic), Αναδιαμόρφωση (Ω-7/Avocado).</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: BRUISE OFF Intro -->
+    <div class="slide-container">
+        <h2 class="slide-title">BRUISE OFF: Τεχνολογία Διείσδυσης</h2>
+        <div class="content-area">
+            <div class="two-column">
+                <div class="image-wrapper">
+                    <!-- IMAGE: Bruise Off (Corrected Raw Link) -->
+                    <img src="https://raw.githubusercontent.com/pzaro/zarkolia-images/main/Bruise%20Off%20%CE%BC%CE%B5%20%CF%86%CF%8C%CE%BD%CF%84%CE%BF.jpg" alt="Bruise Off Cream">
+                </div>
+                <div>
+                    <h3>Καινοτομία Σύνθεσης</h3>
+                    <p>Συνδυασμός υψηλής συγκέντρωσης <strong>Άρνικας (10%)</strong> με <strong>Ουρία (10%)</strong> ως παράγοντα ενίσχυσης της διείσδυσης (Penetration Enhancer).</p>
+                    <div style="background:#f0f9ff; padding: 20px; border-radius: 8px; margin-top: 20px; border-left: 4px solid #0284c7;">
+                        <strong>Ενδείξεις:</strong>
+                        <ul style="margin: 10px 0 0 20px;">
+                            <li>Αιματώματα & Εκχυμώσεις.</li>
+                            <li>Διαστρέμματα & Θλάσεις.</li>
+                            <li>Μυοσκελετικοί πόνοι & Πιασίματα.</li>
+                            <li>Φλεβίτιδα (ανακούφιση).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: BRUISE OFF Ingredients -->
+    <div class="slide-container">
+        <h2 class="slide-title">BRUISE OFF: Μηχανισμοί Δράσης</h2>
+        <div class="content-area">
+            <div class="three-column">
+                <!-- Urea -->
+                <div class="ing-card" style="border-top: 4px solid #0284c7;">
+                    <h3>Ουρία 10%</h3>
+                    <p class="mechanism-text"><strong>Penetration Enhancer:</strong> Κερατολυτική δράση που επιτρέπει στα ενεργά συστατικά να διεισδύσουν στο βάθος της φλεγμονής.</p>
+                    <div class="evidence-box">
+                        <span class="evidence-title">Dermatology</span>
+                        "Urea increases skin permeability for hydrophilic and lipophilic compounds."
+                        <a href="https://pubmed.ncbi.nlm.nih.gov/30378232/" target="_blank" class="citation">Celleno L. Dermatol Ther</a>
+                    </div>
+                </div>
+
+                <!-- Oregano/Arnica -->
+                <div class="ing-card" style="border-top: 4px solid #10b981;">
+                    <h3>Ριγανέλαιο & Άρνικα</h3>
+                    <p class="mechanism-text"><strong>Υπεραιμία & Αποσυμφόρηση:</strong> Το Ριγανέλαιο αυξάνει την τοπική κυκλοφορία, επιταχύνοντας την απορρόφηση του αιματώματος.</p>
+                    <div class="evidence-box">
+                        <span class="evidence-title">Microcirculation</span>
+                        "Essential oils induce local hyperemia, facilitating toxin removal."
+                        <a href="https://pubmed.ncbi.nlm.nih.gov/17009212/" target="_blank" class="citation">Landa et al. Phytomedicine</a>
+                    </div>
+                </div>
+
+                <!-- Lavender/Melissa -->
+                <div class="ing-card" style="border-top: 4px solid #8b5cf6;">
+                    <h3>Λεβάντα & Μελισσόχορτο</h3>
+                    <p class="mechanism-text"><strong>Αναλγησία:</strong> Καταστολή της αίσθησης του πόνου μέσω επίδρασης στις περιφερικές νευρικές απολήξεις.</p>
+                    <div class="evidence-box">
+                        <span class="evidence-title">Pain Relief</span>
+                        "Lavender oil demonstrates significant analgesic and anti-inflammatory properties."
+                        <a href="https://pubmed.ncbi.nlm.nih.gov/26247152/" target="_blank" class="citation">Silva et al. J Ethnopharmacol</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: ALVEOLAIR SIR -->
+    <div class="slide-container">
+        <h2 class="slide-title">ALVEOLAIR SIR: Φυτικό Σιρόπι</h2>
+        <div class="content-area">
+            <div class="two-column">
+                <div>
+                    <h3>Αναπνευστική Υποστήριξη</h3>
+                    <p>Μια ολοκληρωμένη φόρμουλα για τον ξηρό και παραγωγικό βήχα, με παράλληλη ενίσχυση του ανοσοποιητικού.</p>
+                    <ul class="medical-list">
+                        <li><strong>Αλθέα:</strong> Περιέχει βλεννώδεις ουσίες που δημιουργούν προστατευτικό φιλμ, καταπραΰνοντας τον ξηρό βήχα.</li>
+                        <li><strong>Θυμάρι & Ευκάλυπτος:</strong> Αποχρεμπτική και βλεννολυτική δράση για τη ρευστοποίηση των εκκρίσεων.</li>
+                        <li><strong>Κράνα & Ιπποφαές:</strong> Πλούσια σε φυσική Βιταμίνη C και ανθοκυανίνες για τόνωση της άμυνας.</li>
+                    </ul>
+                </div>
+                <div class="image-wrapper">
+                    <!-- IMAGE: Alveolair (Corrected Raw Link) -->
+                    <img src="https://raw.githubusercontent.com/pzaro/zarkolia-images/main/Alveolair%20Sir%20fonto.jpg" alt="Alveolair Syrup">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: COSMETICS -->
+    <div class="slide-container">
+        <h2 class="slide-title">Δερμοκαλλυντική Σειρά</h2>
+        <div class="content-area">
+            <div class="two-column">
+                <div class="image-wrapper">
+                    <!-- IMAGE: Cosmetic Pack (Corrected Raw Link) -->
+                    <img src="https://raw.githubusercontent.com/pzaro/zarkolia-images/main/Zarkolia%20Cosmetic%20Pack%201.jpg" alt="Zarkolia Cosmetics">
+                </div>
+                <div>
+                    <h3>Καινοτομία Αντιγήρανσης</h3>
+                    <ul class="medical-list">
+                        <li><strong>REVITACELL +:</strong> Η Μαστίχα Χίου αυξάνει την έκφραση της πρωτεΐνης <strong>Klotho</strong> (πρωτεΐνη νεότητας) στους ινοβλάστες.</li>
+                        <li><strong>REVITACELL EYES:</strong> Η <strong>Ιπποκαστανιά (Αισκίνη)</strong> ενισχύει τα τοιχώματα των αγγείων, μειώνοντας το πρήξιμο, ενώ η <strong>Άρνικα</strong> καταπολεμά τους μαύρους κύκλους.</li>
+                        <li><strong>HYDRALIA:</strong> Συνδυασμός Υαλουρονικού Οξέος και Ελαίου Jojoba για βαθιά ενυδάτωση χωρίς λιπαρότητα.</li>
+                    </ul>
+                    <div class="image-wrapper" style="height: 150px; margin-top: 20px;">
+                         <!-- IMAGE: Revitacell Eyes (Corrected Raw Link) -->
+                         <img src="https://raw.githubusercontent.com/pzaro/zarkolia-images/main/Revitacell%20Eyes%20%CF%86%CE%BF%CE%BD%CF%84%CE%BF.jpg" alt="Revitacell Eyes" style="object-fit: contain;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Contact -->
+    <div class="slide-container">
+        <div style="text-align: center; width: 100%;">
+            <!-- LOGO: Zarkolia Logo (Corrected Raw Link) -->
+            <img src="https://raw.githubusercontent.com/pzaro/zarkolia-images/4a524e2cb6c9020b5c71bb72f208e78a3d2a9904/zarkolia%20new%20logo.jpg" alt="Zarkolia Logo" style="width: 250px; margin-bottom: 20px;">
+            
+            <h2 style="font-size: 48px; color: #0f172a; margin-bottom: 20px;">Zarkolia Health</h2>
+            <p style="font-size: 24px; color: #64748b;">Partners in Medical Excellence</p>
+            <hr style="width: 100px; border: 2px solid #0284c7; margin: 40px auto;">
+            
+            <div style="display: flex; justify-content: center; gap: 40px; margin-top: 40px;">
+                <div style="text-align: center;">
+                    <i class="fa-solid fa-envelope" style="font-size: 30px; color: #0284c7; margin-bottom: 15px;"></i>
+                    <p>zarkolia.gr@gmail.com</p>
+                </div>
+            </div>
+            
+            <a href="https://jovial-cobbler-9ce8a9.netlify.app/" target="_blank" class="cta-button">Online Παραγγελίες</a>
+
+            <p style="margin-top: 60px; font-size: 14px; color: #94a3b8;">
+                References available upon request. For healthcare professionals only.<br>
+                © 2025 Zarkolia Health. All rights reserved.
+            </p>
+        </div>
+    </div>
+
+</div>
+
+<!-- NAVIGATION CONTROLS -->
+<div class="nav-controls">
+    <button class="nav-btn" onclick="prevSlide()" id="prevBtn"><i class="fa-solid fa-chevron-left"></i></button>
+    <div class="slide-counter" id="slideCounter">1 / 11</div>
+    <button class="nav-btn" onclick="nextSlide()" id="nextBtn"><i class="fa-solid fa-chevron-right"></i></button>
+</div>
+
+<!-- AI ASSISTANT -->
+<button class="ai-fab" onclick="toggleChat()">
+    <i class="fa-solid fa-wand-magic-sparkles"></i>
+</button>
+
+<div class="chat-widget" id="chatWidget">
+    <div class="chat-header">
+        <span>Zarkolia Medical AI ✨</span>
+        <button class="chat-close" onclick="toggleChat()">×</button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+        <div class="message bot">
+            Γεια σας! Είμαι ο εικονικός επιστημονικός συνεργάτης της Zarkolia. Πώς μπορώ να σας βοηθήσω σχετικά με τα προϊόντα μας;
+        </div>
+    </div>
+    <div class="chat-input-area">
+        <input type="text" class="chat-input" id="userInput" placeholder="Ρωτήστε για τα προϊόντα..." onkeypress="handleKeyPress(event)">
+        <button class="send-btn" onclick="sendMessage()">
+            <i class="fa-solid fa-paper-plane"></i>
+        </button>
+    </div>
+</div>
+
+<script>
+    const apiKey = "AIzaSyDOxurXB1mkAlrGjfMNEV0WlaSMcMIuqLY"; // Your specific key
+
+    // --- NAVIGATION LOGIC ---
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide-container');
+    const totalSlides = slides.length;
+    const counterElement = document.getElementById('slideCounter');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    // Auto-Scaler Logic
+    const scaler = document.getElementById('scaler');
+    const baseWidth = 1280;
+    const baseHeight = 720;
+
+    function resizeScaler() {
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+        const availableRatio = windowWidth / windowHeight;
+        const baseRatio = baseWidth / baseHeight;
+        
+        let scale;
+        if (availableRatio > baseRatio) {
+            scale = windowHeight / baseHeight;
+        } else {
+            scale = windowWidth / baseWidth;
+        }
+        
+        scale = scale * 0.95;
+        scaler.style.transform = `scale(${scale})`;
+    }
+
+    window.addEventListener('resize', resizeScaler);
+    resizeScaler();
+
+    function updateControls() {
+        counterElement.textContent = `${currentSlide + 1} / ${totalSlides}`;
+        prevBtn.disabled = currentSlide === 0;
+        nextBtn.disabled = currentSlide === totalSlides - 1;
+        
+        prevBtn.style.opacity = currentSlide === 0 ? '0.5' : '1';
+        nextBtn.style.opacity = currentSlide === totalSlides - 1 ? '0.5' : '1';
+    }
+
+    function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        slides[index].classList.add('active');
+        currentSlide = index;
+        updateControls();
+    }
+
+    function nextSlide() {
+        if (currentSlide < totalSlides - 1) {
+            showSlide(currentSlide + 1);
+        }
+    }
+
+    function prevSlide() {
+        if (currentSlide > 0) {
+            showSlide(currentSlide - 1);
+        }
+    }
+
+    // Keyboard support
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'ArrowRight') nextSlide();
+        if (event.key === 'ArrowLeft') prevSlide();
+    });
+
+    updateControls();
+
+    // --- AI CHAT LOGIC ---
+    function toggleChat() {
+        const widget = document.getElementById('chatWidget');
+        if (widget.style.display === 'flex') {
+            widget.style.display = 'none';
+        } else {
+            widget.style.display = 'flex';
+        }
+    }
+
+    function handleKeyPress(event) {
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
+    }
+
+    async function sendMessage() {
+        const input = document.getElementById('userInput');
+        const messageText = input.value.trim();
+        
+        if (!messageText) return;
+        
+        if (!apiKey) {
+           addMessage(messageText, 'user');
+           addMessage("Για να λειτουργήσει ο AI βοηθός στο Netlify, πρέπει να προσθέσετε το Google Gemini API Key στον κώδικα (γραμμή 394).", 'bot');
+           input.value = '';
+           return;
+        }
+
+        addMessage(messageText, 'user');
+        input.value = '';
+
+        const loadingId = addMessage('Thinking...', 'bot', true);
+
+        try {
+            const response = await callGemini(messageText);
+            document.getElementById(loadingId).remove();
+            addMessage(response, 'bot');
+        } catch (error) {
+            document.getElementById(loadingId).remove();
+            addMessage('Συγγνώμη, παρουσιάστηκε ένα σφάλμα. Ελέγξτε το API Key.', 'bot');
+            console.error(error);
+        }
+    }
+
+    function addMessage(text, sender, isLoading = false) {
+        const messagesDiv = document.getElementById('chatMessages');
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${sender}`;
+        messageDiv.textContent = text;
+        
+        if (isLoading) {
+            messageDiv.id = 'loading-' + Date.now();
+            messageDiv.style.fontStyle = 'italic';
+            messageDiv.style.opacity = '0.7';
+        }
+
+        messagesDiv.appendChild(messageDiv);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        return messageDiv.id;
+    }
+
+    async function callGemini(userQuery) {
+        const systemPrompt = `
+            Είσαι ο εξειδικευμένος ιατρικός βοηθός AI της Zarkolia Health.
+            Ο ρόλος σου είναι να απαντάς σε ερωτήσεις ιατρών και φαρμακοποιών σχετικά με τα προϊόντα μας, χρησιμοποιώντας αυστηρά τα παρακάτω δεδομένα.
+            Μην επινοείς πληροφορίες. Να είσαι επαγγελματίας, σύντομος και σαφής.
+
+            ΔΕΔΟΜΕΝΑ ΠΡΟΪΟΝΤΩΝ:
+            1. Z-BOOST (Κάψουλες):
+               - Σύνθεση: NAC (N-Ακετυλοκυστεΐνη), ALA (Άλφα-Λιποϊκό Οξύ), CoQ10, Ψευδάργυρος, Σελήνιο, Ginger.
+               - Ενδείξεις: Διαβητική Νευροπάθεια (το ALA μειώνει το οξειδωτικό στρες), Λιπώδης Διήθηση Ήπατος (η NAC αυξάνει τη Γλουταθειόνη), Ιογενείς λοιμώξεις (ενίσχυση ανοσοποιητικού).
+               - Δοσολογία: Συνήθως 1 κάψουλα ημερησίως.
+
+            2. ZPLAST CREAM:
+               - Σύνθεση: Μαστίχα Χίου, Μέλι, Βαλσαμόχορτο (Hypericum), Καλέντουλα, Ιπποφαές (Ω-7), Αβοκάντο, Καλαμίνη, Zea Mays, Άρνικα.
+               - Δράση 3 Φάσεων: 1) Αντιμικροβιακή (Μαστίχα/Μέλι), 2) Επούλωση/Κοκκιοποίηση (Βαλσαμόχορτο), 3) Ανάπλαση (Ιπποφαές).
+               - Ενδείξεις: Εγκαύματα (1ου/2ου βαθμού), Έλκη (διαβητικά/κατακλίσεις), Χειρουργικές τομές, Δερματίτιδες.
+
+            3. BRUISE OFF CREAM:
+               - Σύνθεση: Άρνικα 10%, Ουρία 10%, Ριγανέλαιο, Λεβάντα, Μελισσόχορτο.
+               - Καινοτομία: Η Ουρία 10% δρα ως ενισχυτής διείσδυσης (penetration enhancer) για να φτάσει η Άρνικα βαθιά.
+               - Ενδείξεις: Μώλωπες, Οιδήματα, Διαστρέμματα, Φλεβίτιδα, Μυϊκοί πόνοι.
+
+            4. ALVEOLAIR SIR (Σιρόπι):
+               - Σύνθεση: Αλθέα, Θυμάρι, Ευκάλυπτος, Κράνα, Ιπποφαές.
+               - Δράση: Μαλακτικό για ξηρό βήχα (Αλθέα), Αποχρεμπτικό για παραγωγικό (Θυμάρι/Ευκάλυπτος), Ενίσχυση άμυνας (Βιταμίνη C από υπερτροφές).
+
+            5. ΚΑΛΛΥΝΤΙΚΑ (REVITACELL / HYDRALIA):
+               - REVITACELL +: Αντιγήρανση με Μαστίχα (πρωτεΐνη Klotho) και Έλαιο Ροδιού.
+               - REVITACELL EYES: Για μαύρους κύκλους (Άρνικα) και πρήξιμο (Ιπποκαστανιά/Αισκίνη).
+               - HYDRALIA: Βαθιά ενυδάτωση με Υαλουρονικό και Jojoba.
+
+            Απάντησε στην ερώτηση του χρήστη στα Ελληνικά.
+        `;
+
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+        
+        const payload = {
+            contents: [{
+                parts: [{ text: userQuery }]
+            }],
+            systemInstruction: {
+                parts: [{ text: systemPrompt }]
+            }
+        };
+
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data.candidates[0].content.parts[0].text;
+    }
+</script>
+
+</body>
+</html>
