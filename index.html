@@ -239,7 +239,7 @@
         }
         .cta-button:hover { background-color: #0369a1; transform: translateY(-2px); transition: all 0.2s; }
 
-        /* --- NAVIGATION CONTROLS --- */
+        /* --- NAVIGATION CONTROLS (FIXED POSITION) --- */
         .nav-controls {
             position: fixed;
             bottom: 30px;
@@ -252,7 +252,7 @@
             padding: 12px 25px;
             border-radius: 50px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            z-index: 10000;
+            z-index: 10000; /* Super high z-index to ensure visibility */
             border: 1px solid #e2e8f0;
             backdrop-filter: blur(5px);
         }
@@ -298,7 +298,7 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            z-index: 10001;
+            z-index: 10001; /* Above nav controls */
             border: none;
             transition: transform 0.3s;
         }
@@ -920,7 +920,7 @@
             addMessage(response, 'bot');
         } catch (error) {
             document.getElementById(loadingId).remove();
-            addMessage('Συγγνώμη, παρουσιάστηκε σφάλμα: ' + error.message, 'bot');
+            addMessage('Συγγνώμη, παρουσιάστηκε ένα σφάλμα. Ελέγξτε το API Key.', 'bot');
             console.error(error);
         }
     }
@@ -976,7 +976,7 @@
             Απάντησε στην ερώτηση του χρήστη στα Ελληνικά.
         `;
 
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-001:generateContent?key=${apiKey}`;
         
         const payload = {
             contents: [{
