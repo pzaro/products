@@ -36,7 +36,7 @@
         color: #2E4600;
         font-family: Georgia, serif;
         min-height: 40px;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     }
     .cursor {
         display: inline-block;
@@ -47,14 +47,19 @@
     }
     @keyframes blink { 50% { opacity: 0; } }
 
-    /* ΦΟΡΜΑ ΣΤΟΙΧΕΙΩΝ */
+    /* ΜΗΝΥΜΑ ΚΑΛΩΣΟΡΙΣΜΑΤΟΣ & ΦΟΡΜΑ */
+    #welcome-message {
+        display: none;
+        max-width: 500px;
+        margin-bottom: 25px;
+        animation: fadeIn 1s;
+    }
     #login-form {
-        display: none; /* Εμφανίζεται μετά το typewriter */
+        display: none;
         flex-direction: column;
         gap: 15px;
         width: 100%;
         max-width: 300px;
-        margin-top: 20px;
         animation: fadeIn 0.5s;
     }
     .input-field {
@@ -78,72 +83,23 @@
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
     /* --- ΤΟ ΠΕΡΙΕΧΟΜΕΝΟ --- */
-    #main-content {
-        display: none;
-    }
-
-    /* CLIENT-SPECIFIC STYLES */
-    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
-    img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; display: block; }
-    
+    #main-content { display: none; }
     .wrapper { width: 100%; table-layout: fixed; background-color: #F7F9F7; padding-bottom: 40px; }
     .webkit { max-width: 600px; margin: 0 auto; }
     .outer-table { margin: 0 auto; width: 100%; max-width: 600px; border-spacing: 0; }
-    
-    /* CARD STYLES */
-    .card-container { 
-        background-color: #ffffff; 
-        border-radius: 12px; 
-        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        border-top: 4px solid #7C9A64; 
-        overflow: hidden;
-        margin-bottom: 20px; 
-        height: 100%;
-    }
+    .card-container { background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid #7C9A64; overflow: hidden; margin-bottom: 20px; }
     .card-padding { padding: 20px 15px; text-align: center; } 
-
-    /* TYPOGRAPHY */
-    .product-title { color: #2E4600; font-size: 20px; font-weight: bold; margin: 0 0 10px 0; font-family: Georgia, serif; letter-spacing: 0.5px; line-height: 1.3; }
-    .product-desc { font-size: 15px; line-height: 1.5; color: #555; margin-bottom: 15px; font-weight: 500; }
-    
-    /* IMAGES */
-    .product-img { width: 100%; max-width: 100%; height: 200px; object-fit: contain; display: block; margin: 0 auto 15px auto; }
-    
-    /* DETAILED SCIENCE BOXES */
-    .science-box { 
-        background-color: #fcfdfc; 
-        border-left: 3px solid #A3B18A; 
-        padding: 12px;
-        margin-top: 10px; 
-        text-align: left; 
-        border-radius: 4px;
-        border: 1px solid #eee;
-        font-size: 13px; 
-        line-height: 1.5; 
-        color: #333;
-    }
-    .science-title { font-weight: bold; color: #556B2F; font-size: 11px; text-transform: uppercase; display: block; border-bottom: 1px solid #ddd; padding-bottom: 6px; margin-bottom: 8px; }
-    
-    /* LIST STYLES */
-    .ing-list { padding-left: 15px; margin: 0; }
-    .ing-list li { margin-bottom: 6px; }
-    
-    /* TAGS & BUTTONS */
-    .price-tag { display: block; background-color: #f4f8f4; color: #2E4600; padding: 10px; border-radius: 6px; font-weight: bold; font-size: 15px; margin-top: 15px; border: 1px solid #dcebdc; }
-    .cta-button { background-color: #2E4600; color: #ffffff; display: inline-block; padding: 15px 40px; font-size: 16px; font-weight: bold; text-decoration: none; border-radius: 50px; margin-top: 10px; }
-
-    /* TABLES */
-    .table-markup { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 15px; border: 1px solid #eee; border-radius: 8px; overflow: hidden; }
-    .table-markup th { background-color: #7C9A64; color: white; padding: 10px; text-align: left; font-size: 14px; }
-    .table-markup td { padding: 10px; border-bottom: 1px solid #eee; font-size: 14px; color: #444; }
-
-    /* RESPONSIVE GRID */
+    .product-title { color: #2E4600; font-size: 20px; font-weight: bold; margin: 0 0 10px 0; font-family: Georgia, serif; }
+    .product-desc { font-size: 15px; line-height: 1.5; color: #555; margin-bottom: 15px; }
+    .product-img { width: 100%; max-width: 200px; height: auto; display: block; margin: 0 auto 15px auto; }
+    .science-box { background-color: #fcfdfc; border-left: 3px solid #A3B18A; padding: 12px; margin-top: 10px; text-align: left; font-size: 13px; border: 1px solid #eee; }
+    .science-title { font-weight: bold; color: #556B2F; font-size: 11px; text-transform: uppercase; border-bottom: 1px solid #ddd; padding-bottom: 4px; margin-bottom: 8px; display: block; }
+    .price-tag { display: block; background-color: #f4f8f4; color: #2E4600; padding: 10px; border-radius: 6px; font-weight: bold; margin-top: 15px; }
+    .cta-button { background-color: #2E4600; color: #ffffff; display: inline-block; padding: 15px 40px; font-size: 16px; font-weight: bold; text-decoration: none; border-radius: 50px; }
     .two-col { display: inline-block; width: 100%; max-width: 290px; vertical-align: top; }
-    
+
     @media screen and (max-width: 600px) {
         .two-col { max-width: 100% !important; display: block !important; margin-right: 0 !important; }
-        .product-img { height: auto !important; max-width: 220px !important; } 
-        .card-container { height: auto !important; margin-bottom: 25px !important; }
     }
 </style>
 </head>
@@ -156,8 +112,15 @@
         <span id="text-target"></span><span class="cursor"></span>
     </div>
 
+    <div id="welcome-message">
+        <h3 style="color: #7C9A64; margin-bottom: 10px;">Χτίζουμε μαζί το μέλλον της υγείας.</h3>
+        <p style="color: #555; line-height: 1.5; font-size: 15px;">
+            Καλώς ήρθατε στην πύλη συνεργατών. Εδώ θα βρείτε επιστημονική τεκμηρίωση για κάθε σκεύασμα και άμεση πρόσβαση στο σύστημα παραγγελιών μας.
+        </p>
+    </div>
+
     <div id="login-form">
-        <p style="color:#555; font-size:14px; margin-bottom:5px;">Παρακαλώ συμπληρώστε τα στοιχεία σας για πρόσβαση:</p>
+        <p style="color:#2E4600; font-weight: bold; font-size:14px; margin-bottom:10px;">Είσοδος στην Πλατφόρμα:</p>
         <input type="text" id="user-name" class="input-field" placeholder="Ονοματεπώνυμο" required>
         <input type="email" id="user-email" class="input-field" placeholder="Email Φαρμακείου" required>
         <button class="submit-btn" onclick="submitForm()">Είσοδος</button>
@@ -165,89 +128,35 @@
 </div>
 
 <div id="main-content">
-    
     <center class="wrapper">
         <div class="webkit">
-            <table class="outer-table" role="presentation" border="0" cellpadding="0" cellspacing="0">
-                
+            <table class="outer-table">
                 <tr>
                     <td align="center" style="padding: 30px 0;">
-                        <img src="https://github.com/pzaro/zarkolia-images/blob/main/zarkolia%20new%20logo.jpg?raw=true" alt="Zarkolia Health" width="220" style="width: 220px; height: auto; display: block;">
-                        <p style="color: #7C9A64; font-size: 13px; margin: 10px 0 0 0; text-transform: uppercase; letter-spacing: 3px; font-weight: bold;">Scientific Innovation & Nature</p>
+                        <img src="https://github.com/pzaro/zarkolia-images/blob/main/zarkolia%20new%20logo.jpg?raw=true" alt="Zarkolia Health" width="220">
+                        <p style="color: #7C9A64; font-size: 11px; text-transform: uppercase; letter-spacing: 3px; font-weight: bold; margin-top:10px;">Scientific Innovation & Nature</p>
                     </td>
                 </tr>
-
                 <tr>
-                    <td style="padding-bottom: 20px;">
-                        <div class="card-container" style="border-top-color: #2E4600; margin-bottom: 10px;">
+                    <td>
+                        <div class="card-container" style="border-top-color: #2E4600;">
                             <div class="card-padding">
-                                <h2 style="color: #2E4600; font-size: 20px; margin: 0; font-family: Georgia, serif;">Evidence-Based Φιλοσοφία</h2>
-                                <hr style="border: 0; height: 2px; background-color: #A3B18A; width: 50px; margin: 15px auto;">
-                                <p style="font-size: 16px; line-height: 1.6; color: #555;">
-                                    Αγαπητοί συνεργάτες, σας παρουσιάζουμε την πλήρη ανάλυση των δραστικών συστατικών της σειράς μας, τεκμηριώνοντας γιατί αποτελούν την <strong>πρώτη επιλογή</strong> για εσάς και την οικογένειά σας.
-                                </p>
-                                <a href="https://products-5yx5-git-main-pzaros-projects.vercel.app/" style="color: #7C9A64; font-weight: bold; text-decoration: none; font-size: 15px;">Δείτε τον Κατάλογο &rarr;</a>
+                                <h2 style="color: #2E4600; font-family: Georgia, serif;">Evidence-Based Φιλοσοφία</h2>
+                                <p style="font-size: 16px; color: #555;">Πλήρης ανάλυση δραστικών συστατικών για τους συνεργάτες μας.</p>
+                                <a href="https://products-5yx5-git-main-pzaros-projects.vercel.app/" style="color: #7C9A64; font-weight: bold; text-decoration: none;">Δείτε τον Κατάλογο &rarr;</a>
                             </div>
                         </div>
                     </td>
                 </tr>
-
-                <tr>
-                    <td style="font-size: 0; text-align: center; padding-bottom: 10px;">
-                        <div class="two-col" style="margin-right: 12px;">
-                            <div class="card-container">
-                                <div class="card-padding">
-                                    <h2 class="product-title">ALVEOLAIR SIR</h2>
-                                    <img src="https://github.com/pzaro/zarkolia-images/blob/main/Alveolair%20Sir%20fonto.jpg?raw=true" alt="Alveolair" class="product-img">
-                                    <p class="product-desc">Ενισχυμένη φόρμουλα με Βάμματα (Adult Formula).</p>
-                                    <div class="science-box">
-                                        <span class="science-title">ΑΝΑΛΥΣΗ ΣΥΣΤΑΤΙΚΩΝ</span>
-                                        <ul class="ing-list">
-                                            <li><strong>Αλθέα (Βάμμα):</strong> Πλούσια σε βλεννώδεις ουσίες.</li>
-                                            <li><strong>Ευκάλυπτος:</strong> Μαλακτική δράση.</li>
-                                            <li><strong>Θυμάρι:</strong> Ρευστοποίηση εκκρίσεων.</li>
-                                            <li><strong>Κράνι (Cornus Mas):</strong> Στυπτική δράση.</li>
-                                        </ul>
-                                    </div>
-                                    <div class="price-tag">ΧΤ: 7,65€ | ΛΤ: 12,80€</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="two-col">
-                            <div class="card-container">
-                                <div class="card-padding">
-                                    <h2 class="product-title">Z-BOOST CAPS</h2>
-                                    <img src="https://github.com/pzaro/zarkolia-images/blob/main/Zboost%2030%20%CF%86%CE%BF%CE%BD%CF%84%CE%BF.jpg?raw=true" alt="Z-Boost" class="product-img">
-                                    <p class="product-desc">Πρωτόκολλο Αποκατάστασης & Ενέργειας.</p>
-                                    <div class="science-box">
-                                        <span class="science-title">ΣΥΝΕΡΓΕΙΑ & HEALTH CLAIMS</span>
-                                        <ul class="ing-list">
-                                            <li><strong>NAC (300mg):</strong> Πρόδρομος Γλουταθειόνης.</li>
-                                            <li><strong>Ψευδάργυρος & Σελήνιο:</strong> Ανοσοποιητικό.</li>
-                                            <li><strong>ALA:</strong> Αναγεννά Vit C & E.</li>
-                                            <li><strong>CoQ10:</strong> Παραγωγή ATP.</li>
-                                        </ul>
-                                    </div>
-                                    <div class="price-tag">ΧΤ: 14,93€ (30 caps)</div>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-
                 <tr>
                     <td align="center" style="padding: 30px 20px;">
                         <a href="https://products-5yx5-git-main-pzaros-projects.vercel.app/" target="_blank" class="cta-button">Online Παραγγελία</a>
-                        <p style="font-size: 14px; color: #888; margin-top: 25px;">
-                            <strong>Zarkolia Health</strong> © 2025
-                        </p>
+                        <p style="font-size: 12px; color: #888; margin-top: 25px;">Zarkolia Health © 2025</p>
                     </td>
                 </tr>
-
             </table>
         </div>
     </center>
-
 </div>
 
 <script>
@@ -255,11 +164,8 @@
     const TEMPLATE_ID = "template_zrmjoa4";
     const PUBLIC_KEY = "J_DaEzTUYRLMkupgD";
 
-    (function() {
-        emailjs.init(PUBLIC_KEY);
-    })();
+    (function() { emailjs.init(PUBLIC_KEY); })();
 
-    // --- TYPEWRITER EFFECT (ΑΛΛΑΓΜΕΝΟ) ---
     const text = "Καλώς ήρθατε στη Zarkolia Health.";
     const target = document.getElementById("text-target");
     let i = 0;
@@ -271,9 +177,10 @@
             setTimeout(typeWriter, 60); 
         } else {
             setTimeout(() => {
+                document.getElementById("welcome-message").style.display = "block";
                 document.getElementById("login-form").style.display = "flex";
                 document.querySelector(".cursor").style.display = "none";
-            }, 500);
+            }, 400);
         }
     }
 
@@ -288,19 +195,12 @@
             btn.innerHTML = "Παρακαλώ περιμένετε...";
             btn.disabled = true;
 
-            const templateParams = {
+            emailjs.send(SERVICE_ID, TEMPLATE_ID, {
                 to_name: "Panagiotis",
                 from_name: name,
                 from_email: email,
-                message: "Νέα είσοδος συνεργάτη στη σελίδα Zarkolia Update."
-            };
-
-            emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
-                .then(function() {
-                    unlockContent();
-                }, function() {
-                    unlockContent(); 
-                });
+                message: "Νέα είσοδος συνεργάτη στην πύλη Zarkolia."
+            }).then(unlockContent, unlockContent);
         } else {
             alert("Παρακαλώ συμπληρώστε όλα τα πεδία.");
         }
@@ -315,6 +215,5 @@
         }, 800);
     }
 </script>
-
 </body>
 </html>
