@@ -1,288 +1,316 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zarkolia Health - Scientific Compendium</title>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-<style>
-    :root {
-        --primary: #2E4600;
-        --secondary: #7C9A64;
-        --accent: #A3B18A;
-        --bg: #F8FAF8;
-        --white: #ffffff;
-        --text: #2d3436;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zarkolia Health - Ολοκληρωμένος Επιστημονικός Κατάλογος 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2E4600;
+            --secondary: #586B45;
+            --accent: #D4A373;
+            --bg: #FAF7F2;
+            --white: #ffffff;
+            --text: #3D4035;
+            --card-bg: rgba(255, 255, 255, 0.85);
+        }
 
-    body, html { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); scroll-behavior: smooth; }
-    
-    /* --- GATE & LOGIN --- */
-    #gate-container {
-        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-        background-color: var(--white); z-index: 9999; display: flex;
-        flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; transition: opacity 0.8s ease;
-    }
-    .gate-logo { width: 220px; margin-bottom: 30px; }
-    #typewriter-text { font-size: 24px; font-weight: 700; color: var(--primary); font-family: 'Playfair Display', serif; min-height: 40px; margin-bottom: 15px; }
-    #welcome-message { display: none; max-width: 500px; margin-bottom: 25px; animation: fadeIn 1s; font-size: 15px; color: #636e72; line-height: 1.6; }
-    #login-form { display: none; flex-direction: column; gap: 12px; width: 100%; max-width: 320px; animation: fadeIn 0.5s; }
-    .input-field { padding: 14px; border: 1px solid #dfe6e9; border-radius: 10px; font-size: 16px; transition: 0.3s; outline: none; }
-    .input-field:focus { border-color: var(--secondary); box-shadow: 0 0 0 3px rgba(124, 154, 100, 0.1); }
-    .submit-btn { background-color: var(--secondary); color: white; border: none; padding: 15px; font-size: 16px; border-radius: 10px; cursor: pointer; font-weight: 700; transition: 0.3s; }
-    .submit-btn:hover { background-color: var(--primary); transform: translateY(-2px); }
+        body, html { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); scroll-behavior: smooth; }
+        .header { text-align: center; padding: 80px 20px; background: linear-gradient(180deg, #FFFFFF 0%, #FAF7F2 100%); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .brand-logo { width: 220px; margin-bottom: 25px; }
+        
+        .category-title { font-family: 'Playfair Display', serif; font-size: clamp(30px, 6vw, 45px); color: var(--primary); margin: 60px 0 10px; text-align: center; font-style: italic; }
+        .category-subtitle { text-align: center; color: var(--secondary); font-size: 18px; margin-bottom: 50px; font-weight: 300; }
 
-    /* --- MAIN CONTENT --- */
-    #main-content { display: none; }
-    .header { text-align: center; padding: 80px 20px; background: var(--white); border-bottom: 1px solid #f1f1f1; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-    
-    .category-title { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--primary); margin: 60px 0 30px; text-align: center; position: relative; }
-    .category-title::after { content: ''; display: block; width: 50px; height: 3px; background: var(--secondary); margin: 10px auto; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 40px; margin-bottom: 80px; }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 30px; }
-    
-    .card { background: var(--white); border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: 1px solid #f0f0f0; overflow: hidden; transition: 0.4s; display: flex; flex-direction: column; }
-    .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
-    
-    .img-area { background: #fcfcfc; padding: 30px; text-align: center; position: relative; }
-    .product-img { max-width: 100%; height: 250px; object-fit: contain; }
-    
-    .card-body { padding: 25px; flex-grow: 1; }
-    .tag-container { display: flex; gap: 8px; margin-bottom: 15px; flex-wrap: wrap; }
-    .tag { font-size: 11px; font-weight: 700; text-transform: uppercase; background: #f0f4f0; color: var(--primary); padding: 4px 12px; border-radius: 50px; letter-spacing: 0.5px; }
+        .card { 
+            background: var(--card-bg); backdrop-filter: blur(12px); border-radius: 40px; 
+            box-shadow: 0 15px 35px rgba(46, 70, 0, 0.05); border: 1px solid rgba(255, 255, 255, 0.7); 
+            overflow: hidden; transition: all 0.5s ease; display: flex; flex-direction: column; height: 100%;
+        }
+        .card:hover { transform: translateY(-12px); box-shadow: 0 25px 50px rgba(46, 70, 0, 0.1); }
 
-    .sci-box { background: #f9faf9; border-radius: 12px; padding: 18px; margin-top: 15px; border-left: 4px solid var(--secondary); }
-    .sci-title { font-size: 11px; font-weight: 800; color: var(--secondary); text-transform: uppercase; margin-bottom: 10px; display: block; letter-spacing: 1px; }
-    .sci-item { font-size: 13.5px; line-height: 1.6; color: #444; margin-bottom: 10px; }
-    .sci-item strong { color: var(--primary); }
+        .img-area { 
+            background: rgba(255, 255, 255, 0.4); padding: 40px; min-height: 380px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; cursor: zoom-in;
+        }
+        .product-img { max-width: 90%; max-height: 240px; object-fit: contain; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.08)); }
+        .label-img { max-width: 85%; max-height: 110px; object-fit: contain; border-radius: 12px; background: #fff; border: 1px solid #eee; }
 
-    .footer-cta { background: var(--primary); color: white; padding: 100px 20px; text-align: center; margin-top: 80px; border-radius: 40px 40px 0 0; }
-    .order-link { background: var(--white); color: var(--primary); padding: 20px 50px; border-radius: 50px; text-decoration: none; font-weight: 800; display: inline-block; margin-top: 30px; transition: 0.3s; }
-    .order-link:hover { background: var(--accent); color: white; transform: scale(1.05); }
+        .card-body { padding: 40px; flex-grow: 1; }
+        .tag { font-size: 11px; font-weight: 600; text-transform: uppercase; background: #E9EDDF; color: var(--primary); padding: 6px 16px; border-radius: 100px; display: inline-block; margin-bottom: 20px; }
+        .product-name { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--primary); margin: 0 0 20px 0; }
 
-    .cursor { display: inline-block; width: 2px; height: 24px; background: var(--primary); animation: blink 0.7s infinite; vertical-align: middle; }
-    @keyframes blink { 50% { opacity: 0; } }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .sci-box { background: rgba(88, 107, 69, 0.04); border-radius: 25px; padding: 25px; border: 1px dashed rgba(88, 107, 69, 0.2); margin-top: auto; }
+        .sci-title { font-size: 12px; font-weight: 700; color: var(--accent); text-transform: uppercase; margin-bottom: 15px; display: block; letter-spacing: 1.2px; }
+        .sci-item { font-size: 14.5px; line-height: 1.7; color: #4A4D40; margin-bottom: 12px; }
+        .sci-item strong { color: var(--primary); }
 
-    @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
-</style>
+        /* Lightbox */
+        .modal { display: none; position: fixed; z-index: 99999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
+        .modal-content { max-width: 90%; max-height: 90%; border-radius: 15px; }
+        .close { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; cursor: pointer; }
+
+        .footer-cta { background: var(--primary); color: white; padding: 100px 20px; text-align: center; border-radius: 60px 60px 0 0; }
+        .order-btn { background: var(--accent); color: white; padding: 22px 60px; border-radius: 100px; text-decoration: none; font-weight: 700; font-size: 20px; display: inline-block; transition: 0.4s; }
+    </style>
 </head>
 <body>
 
-<div id="gate-container">
-    <img src="https://github.com/pzaro/zarkolia-images/blob/main/zarkolia%20new%20logo.jpg?raw=true" class="gate-logo">
-    <div id="typewriter-text"><span id="text-target"></span><span class="cursor"></span></div>
-    <div id="welcome-message">
-        Επίσημη πύλη επιστημονικής ενημέρωσης <strong>Zarkolia Health</strong>. Ανακαλύψτε τους μηχανισμούς δράσης των ενεργών συστατικών μας μέσα από κλινικά τεκμηριωμένα δεδομένα.
+<header class="header">
+    <div class="container">
+        <img src="https://github.com/pzaro/zarkolia-images/blob/main/zarkolia%20new%20logo.jpg?raw=true" class="brand-logo">
+        <p style="letter-spacing: 3px; color: var(--accent); font-weight: 600;">ΦΡΟΝΤΙΔΑ, ΑΝΑΠΛΑΣΗ & ΕΥΕΞΙΑ</p>
     </div>
-    <div id="login-form">
-        <input type="text" id="user-name" class="input-field" placeholder="Ονοματεπώνυμο" required>
-        <input type="email" id="user-email" class="input-field" placeholder="Email Φαρμακείου" required>
-        <button class="submit-btn" onclick="submitForm()">Είσοδος στην Πύλη</button>
+</header>
+
+<div class="container">
+    
+    <h2 class="category-title">Θεραπευτική Σειρά & Ανάπλαση</h2>
+    <div class="grid">
+        <div class="card" style="grid-column: 1 / -1;">
+            <div class="img-area" onclick="openModal(this.querySelector('.product-img').src)">
+                <img src="https://github.com/pzaro/zarkolia-images/blob/main/Zplast%20Total%20Repair.jpeg?raw=true" class="product-img">
+            </div>
+            <div class="card-body">
+                <span class="tag">Εντατική Ανάπλαση</span>
+                <h3 class="product-name">Zplast Total Repair Cream</h3>
+                <div class="sci-box">
+                    <span class="sci-title">Ανάλυση Συστατικών</span>
+                    <div class="sci-item"><strong>Centella Asiatica:</strong> Διέγερση ινοβλαστών για παραγωγή κολλαγόνου.</div>
+                    <div class="sci-item"><strong>Hypericum Perforatum (Σπαθόλαδο):</strong> Υπερφορίνη για ταχεία ανάπλαση σε εγκαύματα.</div>
+                    <div class="sci-item"><strong>Μαστίχα & Μέλι:</strong> Φυσική αντισηψία και επούλωση.</div>
+                    <div class="sci-item"><strong>Ιπποφαές & Αβοκάντο:</strong> Παροχή Ω-7 και Ω-9 για αναδόμηση φραγμού.</div>
+                    <div class="sci-item"><strong>Υαλουρονικό Οξύ:</strong> Ενυδάτωση για κυτταρική μετανάστευση.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="img-area" onclick="openModal(this.querySelector('.product-img').src)">
+                <img src="https://github.com/pzaro/zarkolia-images/blob/main/zplast%20%CE%BC%CE%B5%20%CF%86%CE%BF%CE%BD%CF%84%CE%BF.jpg?raw=true" class="product-img">
+            </div>
+            <div class="card-body">
+                <span class="tag">Επούλωση & Προστασία</span>
+                <h3 class="product-name">Zplast Cream</h3>
+                <div class="sci-box">
+                    <span class="sci-title">Ανάλυση Συστατικών</span>
+                    <div class="sci-item"><strong>Μαστίχα Χίου & Μέλι:</strong> Αντιμικροβιακή δράση και υποστήριξη ανάπλασης.</div>
+                    <div class="sci-item"><strong>Zea Mays & Αβοκάντο:</strong> Μαλακτική δράση και θρέψη επιδερμίδας.</div>
+                    <div class="sci-item"><strong>Hypericum & Ιπποφαές:</strong> Ανάπλαση ιστών και βιταμινούχος ενίσχυση.</div>
+                    <div class="sci-item"><strong>Θυμάρι & Καλαμίνη:</strong> Αντισηψία και καταπράυνση κνησμού.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="img-area" onclick="openModal(this.querySelector('.product-img').src)">
+                <img src="https://github.com/pzaro/zarkolia-images/blob/main/Alveolair%20Sir%20fonto.jpg?raw=true" class="product-img">
+            </div>
+            <div class="card-body">
+                <span class="tag">Αναπνευστικό</span>
+                <h3 class="product-name">Alveolair Sir</h3>
+                <div class="sci-box">
+                    <span class="sci-title">Ανάλυση Συστατικών</span>
+                    <div class="sci-item"><strong>Althaea Officinalis:</strong> Προστατευτικό φιλμ κατά του ερεθισμού.</div>
+                    <div class="sci-item"><strong>Ιπποφαές:</strong> Ενίσχυση βλεννογόνου με βιταμίνες και αντιοξειδωτικά.</div>
+                    <div class="sci-item"><strong>Cornus Mas (Κράνι):</strong> Αντιφλεγμονώδης δράση στο λαιμό.</div>
+                    <div class="sci-item"><strong>Θυμάρι & Ευκάλυπτος:</strong> Ρευστοποίηση και αποβολή εκκρίσεων.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="img-area" onclick="openModal(this.querySelector('.product-img').src)">
+                <img src="https://github.com/pzaro/zarkolia-images/blob/main/Zboost%2030%20%CF%86%CE%BF%CE%BD%CF%84%CE%BF.jpg?raw=true" class="product-img">
+            </div>
+            <div class="card-body">
+                <span class="tag">Κυτταρική Θωράκιση</span>
+                <h3 class="product-name">Z-Boost Caps</h3>
+                <div class="sci-box">
+                    <span class="sci-title">Πλήρης Ανάλυση</span>
+                    <div class="sci-item"><strong>NAC:</strong> Άμεσος πρόδρομος γλουταθειόνης για ισχυρή αποτοξίνωση.</div>
+                    <div class="sci-item"><strong>CoQ10 & ALA:</strong> Ενίσχυση μιτοχονδριακής ενέργειας ATP.</div>
+                    <div class="sci-item"><strong>Σελήνιο & Ψευδάργυρος:</strong> Θωράκιση ανοσοποιητικού συστήματος.</div>
+                    <div class="sci-item"><strong>Βιταμίνες C & E:</strong> Αντιοξειδωτική προστασία κυττάρων.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="img-area" onclick="openModal(this.querySelector('.product-img').src)">
+                <img src="https://github.com/pzaro/zarkolia-images/blob/main/Bruise%20Off%20%CE%BC%CE%B5%20%CF%86%CF%8C%CE%BD%CF%84%CE%BF.jpg?raw=true" class="product-img">
+            </div>
+            <div class="card-body">
+                <span class="tag">Μώλωπες & Οιδήματα</span>
+                <h3 class="product-name">Bruise Off Gel cream</h3>
+                <div class="sci-box">
+                    <span class="sci-title">Ανάλυση Συστατικών</span>
+                    <div class="sci-item"><strong>Arnica Montana & Urea:</strong> Μείωση οιδημάτων και διαδερμική απορρόφηση.</div>
+                    <div class="sci-item"><strong>Αιθέριο Λεβάντας:</strong> Καταπραϋντική και επουλωτική δράση.</div>
+                    <div class="sci-item"><strong>Μελισσόχορτο:</strong> Αντιφλεγμονώδης και ηρεμιστική δράση στον ιστό.</div>
+                    <div class="sci-item"><strong>Ριγανέλαιο:</strong> Τοπική τόνωση και αντισηψία.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="category-title">Δερμοκαλλυντική Σειρά</h2>
+    <div class="grid">
+        <div class="card">
+            <div class="img-area" onclick="openModal(this.querySelector('.product-img').src)">
+                <img src="https://github.com/pzaro/zarkolia-images/blob/main/%CE%A1+.jpg?raw=true" class="product-img">
+            </div>
+            <div class="card-body">
+                <span class="tag">Επιγενετική</span>
+                <h3 class="product-name">Revitacell Plus Face Cream 50ml</h3>
+                <div class="sci-box">
+                    <span class="sci-title">Ανάλυση Συστατικών</span>
+                    <div class="sci-item"><strong>Klotho Activation (Μαστίχα):</strong> Ενεργοποίηση κυτταρικής νεότητας.</div>
+                    <div class="sci-item"><strong>Jojoba & Αβοκάντο:</strong> Βιομιμητική θρέψη και ελαστικότητα.</div>
+                    <div class="sci-item"><strong>Αμυγδαλέλαιο & Vit E:</strong> Μαλακτική δράση και προστασία.</div>
+                    <div class="sci-item"><strong>Υαλουρονικό Οξύ:</strong> Βαθιά ενυδάτωση και "γέμισμα".</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="img-area" onclick="openModal(this.querySelector('.product-img').src)">
+                <img src="https://github.com/pzaro/zarkolia-images/blob/main/Revitacell%20Eyes%20%CF%86%CE%BF%CE%BD%CF%84%CE%BF.jpg?raw=true" class="product-img">
+            </div>
+            <div class="card-body">
+                <span class="tag">Μάτια</span>
+                <h3 class="product-name">Revitacell Eyes Luce cream 30ml</h3>
+                <div class="sci-box">
+                    <span class="sci-title">Στοχευμένη Δράση</span>
+                    <div class="sci-item"><strong>Escin (Ιπποκαστανιά):</strong> Μείωση μαύρων κύκλων.</div>
+                    <div class="sci-item"><strong>Άρνικα:</strong> Αποσυμφόρηση οιδήματος (σακούλες).</div>
+                    <div class="sci-item"><strong>Υαλουρονικό:</strong> Λείανση λεπτών γραμμών.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="img-area" onclick="openModal(this.querySelector('.product-img').src)">
+                <img src="https://github.com/pzaro/zarkolia-images/blob/main/Hydralia%20fonto.jpg?raw=true" class="product-img">
+            </div>
+            <div class="card-body">
+                <span class="tag">Ενυδάτωση</span>
+                <h3 class="product-name">Hydralia Face Cream 50ml</h3>
+                <div class="sci-box">
+                    <span class="sci-title">Ανάλυση Συστατικών</span>
+                    <div class="sci-item"><strong>Jojoba & Αβοκάντο:</strong> Αποκατάσταση υδρολιπιδικού φραγμού.</div>
+                    <div class="sci-item"><strong>Μαστίχα & Αμυγδαλέλαιο:</strong> Λάμψη και απαλότητα.</div>
+                    <div class="sci-item"><strong>Υαλουρονικό & Vit E:</strong> Κλείδωμα υγρασίας.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="category-title">Σειρά Nutri-MX Essentials</h2>
+    <div class="grid">
+        <div class="card">
+            <div class="img-area" onclick="openModal(this.querySelector('.label-img').src)">
+                <img src="https://github.com/pzaro/zarkolia-images/blob/main/NUTRI%20MX%20JOINT%20SUPPORT.webp?raw=true" class="product-img">
+                <img src="https://github.com/pzaro/zarkolia-images/blob/main/Joint-Support-Nutrition-facts.png?raw=true" class="label-img">
+            </div>
+            <div class="card-body">
+                <h3 class="product-name">Nutri-MX Joint Support</h3>
+                <div class="sci-box">
+                    <span class="sci-title">Επιστημονική Ανάλυση</span>
+                    <div class="sci-item"><strong>Γλυκοζαμίνη & Χονδροϊτίνη:</strong> Δομική υποστήριξη και ανάπλαση του αρθρικού χόνδρου.</div>
+                    <div class="sci-item"><strong>MSM:</strong> Οργανικό θείο για τη μείωση της φλεγμονής και του πόνου.</div>
+                    <div class="sci-item"><strong>Εκχύλισμα Boswellia:</strong> Φυσικός αντιφλεγμονώδης παράγοντας για την κινητικότητα.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="img-area" onclick="openModal(this.querySelector('.label-img').src)">
+                <img src="https://github.com/pzaro/zarkolia-images/blob/main/Magnesium%20+b6.webp?raw=true" class="product-img">
+                <img src="https://github.com/pzaro/zarkolia-images/blob/main/Magnesium-Nutrition-facts.png?raw=true" class="label-img">
+            </div>
+            <div class="card-body">
+                <h3 class="product-name">Nutri-MX Magnesium + B6</h3>
+                <div class="sci-box">
+                    <span class="sci-title">Επιστημονική Ανάλυση</span>
+                    <div class="sci-item"><strong>Μαγνήσιο (ως Οξείδιο):</strong> Συμβάλλει στη φυσιολογική λειτουργία των μυών και του νευρικού συστήματος.</div>
+                    <div class="sci-item"><strong>Βιταμίνη B6:</strong> Ενισχύει τη δράση του μαγνησίου και μειώνει την κούραση και την κόπωση.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="img-area" onclick="openModal(this.querySelector('.label-img').src)">
+                <img src="https://github.com/pzaro/zarkolia-images/blob/main/NUTRI%20MX%20OMEGA3.webp?raw=true" class="product-img">
+                <img src="https://github.com/pzaro/zarkolia-images/blob/main/Omega3-nutrition-Facts.png?raw=true" class="label-img">
+            </div>
+            <div class="card-body">
+                <h3 class="product-name">Nutri-MX Omega 3 Pure</h3>
+                <div class="sci-box">
+                    <span class="sci-title">Επιστημονική Ανάλυση</span>
+                    <div class="sci-item"><strong>EPA & DHA:</strong> 1000mg ιχθυελαίου ανά κάψουλα για τη φυσιολογική λειτουργία της καρδιάς.</div>
+                    <div class="sci-item"><strong>Vit E:</strong> Αντιοξειδωτική προστασία των λιπαρών οξέων από την οξείδωση.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="img-area" onclick="openModal(this.querySelector('.label-img').src)">
+                <img src="https://github.com/pzaro/zarkolia-images/blob/main/NUTRI%20MX%20A%20TO%20Z.webp?raw=true" class="product-img">
+                <img src="https://github.com/pzaro/zarkolia-images/blob/main/A-Z-Multivitamin-and-Minerals-30-Tabs-LABEL.jpg?raw=true" class="label-img">
+            </div>
+            <div class="card-body">
+                <h3 class="product-name">Nutri-MX A to Z Multivitamin</h3>
+                <div class="sci-box">
+                    <span class="sci-title">Επιστημονική Ανάλυση</span>
+                    <div class="sci-item"><strong>Πλήρες Φάσμα:</strong> 13 βιταμίνες και 11 μέταλλα για την κάλυψη των ημερήσιων αναγκών.</div>
+                    <div class="sci-item"><strong>Lutein:</strong> Υποστήριξη της υγείας των ματιών και της όρασης.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="img-area" onclick="openModal(this.querySelector('.label-img').src)">
+                <img src="https://github.com/pzaro/zarkolia-images/blob/main/NUTRI%20MX%20PROBIOTIC%20PREMIUM.jpg?raw=true" class="product-img">
+                <img src="https://github.com/pzaro/zarkolia-images/blob/main/Probiotic-nutrition-facts.png?raw=true" class="label-img">
+            </div>
+            <div class="card-body">
+                <h3 class="product-name">Nutri-MX Probiotic Premium</h3>
+                <div class="sci-box">
+                    <span class="sci-title">Επιστημονική Ανάλυση</span>
+                    <div class="sci-item"><strong>L. Acidophilus & B. Longum:</strong> Προβιοτικά στελέχη για την ισορροπία του μικροβιώματος.</div>
+                    <div class="sci-item"><strong>FOS (Πρεβιοτικά):</strong> Τροφή για τα ευεργετικά βακτήρια του εντέρου.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-cta">
+        <h2>Συνεργασία & Ποιότητα</h2>
+        <a href="https://my-order-form-steel.vercel.app/" class="order-btn">Μετάβαση στο MyOrder</a>
+        <p style="margin-top: 50px; font-size: 13px; opacity: 0.6;">ZARKOLIA HEALTH © 2026</p>
     </div>
 </div>
 
-<div id="main-content">
-    <div class="header">
-        <div class="container">
-            <img src="https://github.com/pzaro/zarkolia-images/blob/main/zarkolia%20new%20logo.jpg?raw=true" width="180">
-            <h1 style="font-family: 'Playfair Display', serif; font-size: 42px; color: var(--primary); margin-top: 20px;">Scientific Portfolio 2026</h1>
-            <p style="letter-spacing: 2px; text-transform: uppercase; font-size: 14px; color: var(--secondary); font-weight: 700;">Mechanism of Action & Clinical Analysis</p>
-        </div>
-    </div>
-
-    <div class="container">
-        <h2 class="category-title">Therapeutic Solutions</h2>
-        <div class="grid">
-            
-            <div class="card">
-                <div class="img-area"><img src="https://github.com/pzaro/zarkolia-images/blob/main/Alveolair%20Sir%20fonto.jpg?raw=true" class="product-img"></div>
-                <div class="card-body">
-                    <div class="tag-container"><span class="tag">Adults</span><span class="tag">200ml</span></div>
-                    <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; margin: 0 0 15px 0;">Alveolair Sir</h3>
-                    <div class="sci-box">
-                        <span class="sci-title">Ανάλυση Συστατικών</span>
-                        <div class="sci-item"><strong>Althaea Officinalis:</strong> Πολυσακχαρίτες που προσκολλώνται στο βλεννογόνο δημιουργώντας φυσική ασπίδα κατά των ερεθιστικών παραγόντων.</div>
-                        <div class="sci-item"><strong>Thymus Vulgaris:</strong> Θυμόλη και καρβακρόλη με αποδεδειγμένη σπασμολυτική δράση στους λείους μύες των βρόγχων.</div>
-                        <div class="sci-item"><strong>Cornus Mas (Κράνι):</strong> Στυπτική δράση που βοηθά στη μείωση του οιδήματος των βλεννογόνων.</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="img-area"><img src="https://github.com/pzaro/zarkolia-images/blob/main/Zboost%2030%20%CF%86%CE%BF%CE%BD%CF%84%CE%BF.jpg?raw=true" class="product-img"></div>
-                <div class="card-body">
-                    <div class="tag-container"><span class="tag">12 Caps</span><span class="tag">30 Caps</span></div>
-                    <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; margin: 0 0 15px 0;">Z-Boost Caps</h3>
-                    <div class="sci-box">
-                        <span class="sci-title">Κυτταρική Βιοχημεία</span>
-                        <div class="sci-item"><strong>NAC (300mg):</strong> Απαραίτητο υπόστρωμα για τη σύνθεση γλουταθειόνης. Δρα ως ισχυρός αντιοξειδωτικός παράγοντας και βλεννολυτικό.</div>
-                        <div class="sci-item"><strong>CoQ10 & ALA:</strong> Συνεργιστική δράση στη μιτοχονδριακή αλυσίδα μεταφοράς ηλεκτρονίων για την παραγωγή ATP.</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="img-area"><img src="https://github.com/pzaro/zarkolia-images/blob/main/Bruise%20Off%20%CE%BC%CE%B5%20%CF%86%CF%8C%CE%BD%CF%84%CE%BF.jpg?raw=true" class="product-img"></div>
-                <div class="card-body">
-                    <div class="tag-container"><span class="tag">50ml</span><span class="tag">100ml</span></div>
-                    <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; margin: 0 0 15px 0;">Bruise Off Gel</h3>
-                    <div class="sci-box">
-                        <span class="sci-title">Μηχανισμός Διείσδυσης</span>
-                        <div class="sci-item"><strong>Urea 10%:</strong> Αυξάνει την ενυδάτωση της κεράτινης στοιβάδας, διευκολύνοντας τη διέλευση των δραστικών ουσιών Arnica & Oregano.</div>
-                        <div class="sci-item"><strong>Arnica Montana:</strong> Περιέχει ελενταλίνη, η οποία αναστέλλει τον μεταγραφικό παράγοντα NF-κB, μειώνοντας το οίδημα.</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="img-area"><img src="https://github.com/pzaro/zarkolia-images/blob/main/zplast%20%CE%BC%CE%B5%20%CF%86%CE%BF%CE%BD%CF%84%CE%BF.jpg?raw=true" class="product-img"></div>
-                <div class="card-body">
-                    <div class="tag-container"><span class="tag">40ml</span><span class="tag">100ml</span></div>
-                    <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; margin: 0 0 15px 0;">Zplast Cream</h3>
-                    <div class="sci-box">
-                        <span class="sci-title">Επούλωση & Προστασία</span>
-                        <div class="sci-item"><strong>Chios Mastic:</strong> Φυσική ρητίνη με ισχυρή αντιμικροβιακή δράση που προστατεύει τον τραυματισμένο ιστό κατά την ανάπλαση.</div>
-                        <div class="sci-item"><strong>Calamine:</strong> Ψευδάργυρος με στυπτικές ιδιότητες που προσφέρει άμεση ανακούφιση από τον κνησμό και την εξίδρωση.</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="img-area"><img src="https://github.com/pzaro/zarkolia-images/blob/main/Zplast%20Total%20Repair.jpeg?raw=true" class="product-img"></div>
-                <div class="card-body">
-                    <div class="tag-container"><span class="tag">30ml</span><span class="tag">50ml</span><span class="tag">100ml</span></div>
-                    <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; margin: 0 0 15px 0;">Zplast Total Repair</h3>
-                    <div class="sci-box">
-                        <span class="sci-title">Ανάπλαση 7 Σημείων</span>
-                        <div class="sci-item"><strong>Centella Asiatica:</strong> Διεγείρει τη σύνθεση κολλαγόνου τύπου Ι, απαραίτητο για τη δομική ακεραιότητα του νέου δέρματος.</div>
-                        <div class="sci-item"><strong>St. John's Wort Oil:</strong> Πλούσιο σε υπερφορίνη για την ταχεία κυτταρική ανάπλαση σε εγκαύματα και ουλές.</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <h2 class="category-title">Dermo-Cosmetic Innovation</h2>
-        <div class="grid">
-            <div class="card">
-                <div class="img-area"><img src="https://github.com/pzaro/zarkolia-images/blob/main/%CE%A1+.jpg?raw=true" class="product-img"></div>
-                <div class="card-body">
-                    <div class="tag-container"><span class="tag">Epigenetics</span><span class="tag">50ml</span></div>
-                    <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; margin: 0 0 15px 0;">Revitacell +</h3>
-                    <div class="sci-box">
-                        <span class="sci-title">Επιγενετική Δράση</span>
-                        <div class="sci-item"><strong>Klotho Protein:</strong> Η μαστίχα ενεργοποιεί την πρωτεΐνη "νεότητας", η οποία καθυστερεί την κυτταρική γήρανση και ενισχύει την πυκνότητα.</div>
-                        <div class="sci-item"><strong>Pomegranate Extract:</strong> Πλούσιο σε ελλαγικό οξύ για προστασία από τη φωτογήρανση και τις ελεύθερες ρίζες.</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="img-area">
-                    <img src="https://github.com/pzaro/zarkolia-images/blob/main/Revitacell%20Eyes%20%CF%86%CE%BF%CE%BD%CF%84%CE%BF.jpg?raw=true" class="product-img">
-                </div>
-                <div class="card-body">
-                    <div class="tag-container"><span class="tag">Eyes</span><span class="tag">Anti-Dark Circles</span></div>
-                    <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; margin: 0 0 15px 0;">Revitacell Eyes Luce</h3>
-                    <div class="sci-box">
-                        <span class="sci-title">Στοχευμένη Δράση</span>
-                        <div class="sci-item"><strong>Ιπποκαστανιά (Escin):</strong> Βελτιώνει τη μικροκυκλοφορία στα τριχοειδή αγγεία, μειώνοντας τους μαύρους κύκλους.</div>
-                        <div class="sci-item"><strong>Άρνικα:</strong> Αποσυμφορητική δράση που καταπολεμά το οίδημα (σακούλες) στην περιοχή των ματιών.</div>
-                        <div class="sci-item"><strong>Υαλουρονικό:</strong> Άμεσο γέμισμα των λεπτών γραμμών και του "ποδιού της χήνας".</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="img-area"><img src="https://github.com/pzaro/zarkolia-images/blob/main/Hydralia%20fonto.jpg?raw=true" class="product-img"></div>
-                <div class="card-body">
-                    <div class="tag-container"><span class="tag">Biomimetic</span><span class="tag">50ml</span></div>
-                    <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; margin: 0 0 15px 0;">Hydralia</h3>
-                    <div class="sci-box">
-                        <span class="sci-title">Ενυδατική Τεχνολογία</span>
-                        <div class="sci-item"><strong>Jojoba Oil:</strong> Βιομιμητικά λιπίδια που αποκαθιστούν τον υδρολιπιδικό φραγμό.</div>
-                        <div class="sci-item"><strong>Micro-Hyaluronic:</strong> Διεισδύει στις βαθύτερες στοιβάδες για βαθιά ενυδάτωση.</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <h2 class="category-title">Nutri-MX Series</h2>
-        <div class="grid">
-            <div class="card">
-                <div class="card-body">
-                    <div class="tag-container"><span class="tag">Essentials</span></div>
-                    <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; margin: 0 0 15px 0;">Nutri-MX Solutions</h3>
-                    <div class="sci-box">
-                        <span class="sci-title">Επιστημονική Υποστήριξη</span>
-                        <div class="sci-item"><strong>Joint Formula:</strong> Γλυκοζαμίνη, Χονδροϊτίνη & MSM για τη διατήρηση της ακεραιότητας των αρθρώσεων.</div>
-                        <div class="sci-item"><strong>A to Z Multivitamin:</strong> 24 βιταμίνες και μέταλλα για τη βέλτιστη μεταβολική λειτουργία.</div>
-                        <div class="sci-item"><strong>Probiotic Premium:</strong> 10 δις ζώντα στελέχη για την ισορροπία της εντερικής χλωρίδας.</div>
-                        <div class="sci-item"><strong>Omega 3 & Magnesium:</strong> Υψηλής καθαρότητας EPA/DHA και Magnesium Citrate για μέγιστη βιοδιαθεσιμότητα.</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-cta">
-            <h2 style="font-family: 'Playfair Display', serif; font-size: 36px;">Σύστημα Παραγγελιοληψίας</h2>
-            <p style="opacity: 0.8; font-size: 18px;">Συνδεθείτε απευθείας με το τμήμα διανομής της Zarkolia Health.</p>
-            <a href="https://my-order-form-steel.vercel.app/" class="order-link">Μετάβαση στο MyOrder &rarr;</a>
-            <p style="margin-top: 50px; font-size: 11px; opacity: 0.5;">ZARKOLIA HEALTH © 2026 | SCIENCE DRIVEN NATURE</p>
-        </div>
-    </div>
+<div id="imageModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="imgFull">
 </div>
 
 <script>
-    const SERVICE_ID = "service_ygsdcud"; 
-    const TEMPLATE_ID = "template_zrmjoa4";
-    const PUBLIC_KEY = "J_DaEzTUYRLMkupgD";
-    (function() { emailjs.init(PUBLIC_KEY); })();
-
-    const text = "Zarkolia Health Scientific Portal.";
-    const target = document.getElementById("text-target");
-    let idx = 0;
-
-    function typeWriter() {
-        if (idx < text.length) {
-            target.innerHTML += text.charAt(idx); idx++;
-            setTimeout(typeWriter, 50); 
-        } else {
-            setTimeout(() => {
-                document.getElementById("welcome-message").style.display = "block";
-                document.getElementById("login-form").style.display = "flex";
-                document.querySelector(".cursor").style.display = "none";
-            }, 300);
-        }
+    function openModal(src) {
+        document.getElementById("imageModal").style.display = "flex";
+        document.getElementById("imgFull").src = src;
     }
-    window.onload = typeWriter;
-
-    function submitForm() {
-        const name = document.getElementById("user-name").value;
-        const email = document.getElementById("user-email").value;
-        if(name && email) {
-            const btn = document.querySelector(".submit-btn");
-            btn.innerHTML = "Επαλήθευση...";
-            btn.disabled = true;
-
-            emailjs.send(SERVICE_ID, TEMPLATE_ID, { 
-                from_name: name, 
-                from_email: email, 
-                message: "Είσοδος στην πύλη Zarkolia." 
-            }).then(unlock, unlock);
-        } else { alert("Συμπληρώστε τα στοιχεία σας."); }
-    }
-
-    function unlock() {
-        document.getElementById("gate-container").style.opacity = "0";
-        setTimeout(() => {
-            document.getElementById("gate-container").style.display = "none";
-            document.getElementById("main-content").style.display = "block";
-            window.scrollTo(0, 0);
-        }, 800);
+    function closeModal() { document.getElementById("imageModal").style.display = "none"; }
+    window.onclick = function(event) {
+        if (event.target == document.getElementById("imageModal")) closeModal();
     }
 </script>
+
 </body>
 </html>
