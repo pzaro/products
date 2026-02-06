@@ -6,7 +6,6 @@
 <title>Zarkolia Health - Είσοδος Συνεργατών</title>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <style>
-    /* ΒΑΣΙΚΟ ΣΤΥΛ */
     body, html { margin: 0; padding: 0; height: 100%; font-family: 'Helvetica Neue', Arial, sans-serif; background-color: #F7F9F7; }
     
     /* --- GATE (ΕΙΣΟΔΟΣ) --- */
@@ -32,28 +31,26 @@
     #login-form { display: none; flex-direction: column; gap: 15px; width: 100%; max-width: 300px; animation: fadeIn 0.5s; }
     .input-field { padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; }
     .submit-btn { background-color: #7C9A64; color: white; border: none; padding: 12px; font-size: 18px; border-radius: 8px; cursor: pointer; font-weight: bold; }
-    
+    .submit-btn:hover { background-color: #2E4600; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* --- CONTENT STYLES --- */
+    /* --- CONTENT --- */
     #main-content { display: none; }
     .wrapper { width: 100%; table-layout: fixed; background-color: #F7F9F7; padding-bottom: 40px; }
     .webkit { max-width: 600px; margin: 0 auto; }
     .outer-table { margin: 0 auto; width: 100%; max-width: 600px; border-spacing: 0; }
-    .card-container { background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid #7C9A64; overflow: hidden; margin-bottom: 20px; height: 100%; }
+    .card-container { background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid #7C9A64; overflow: hidden; margin-bottom: 20px; }
     .card-padding { padding: 20px 15px; text-align: center; } 
     .product-title { color: #2E4600; font-size: 20px; font-weight: bold; margin: 0 0 10px 0; font-family: Georgia, serif; }
-    .product-desc { font-size: 15px; line-height: 1.5; color: #555; margin-bottom: 15px; font-weight: 500; }
     .product-img { width: 100%; max-width: 100%; height: 200px; object-fit: contain; display: block; margin: 0 auto 15px auto; }
     .science-box { background-color: #fcfdfc; border-left: 3px solid #A3B18A; padding: 12px; margin-top: 10px; text-align: left; border-radius: 4px; border: 1px solid #eee; font-size: 13px; line-height: 1.5; color: #333; }
     .science-title { font-weight: bold; color: #556B2F; font-size: 11px; text-transform: uppercase; display: block; border-bottom: 1px solid #ddd; padding-bottom: 6px; margin-bottom: 8px; }
-    .ing-list { padding-left: 15px; margin: 0; }
     .price-tag { display: block; background-color: #f4f8f4; color: #2E4600; padding: 10px; border-radius: 6px; font-weight: bold; font-size: 15px; margin-top: 15px; }
-    .cta-button { background-color: #2E4600; color: #ffffff; display: inline-block; padding: 15px 40px; font-size: 16px; font-weight: bold; text-decoration: none; border-radius: 50px; }
+    .cta-button { background-color: #2E4600; color: #ffffff; display: inline-block; padding: 15px 40px; font-size: 16px; font-weight: bold; text-decoration: none; border-radius: 50px; margin-top: 10px; }
+    .two-col { display: inline-block; width: 100%; max-width: 290px; vertical-align: top; }
     .table-markup { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 15px; border: 1px solid #eee; border-radius: 8px; overflow: hidden; }
     .table-markup td { padding: 10px; border-bottom: 1px solid #eee; font-size: 14px; color: #444; }
-    .two-col { display: inline-block; width: 100%; max-width: 290px; vertical-align: top; }
-    
+
     @media screen and (max-width: 600px) { .two-col { max-width: 100% !important; display: block !important; margin-right: 0 !important; } }
 </style>
 </head>
@@ -62,10 +59,12 @@
 <div id="gate-container">
     <img src="https://github.com/pzaro/zarkolia-images/blob/main/zarkolia%20new%20logo.jpg?raw=true" alt="Zarkolia Health" class="gate-logo">
     <div id="typewriter-text"><span id="text-target"></span><span class="cursor"></span></div>
+    
     <div id="welcome-message">
         <h3 style="color: #7C9A64; margin-bottom: 10px;">Χτίζουμε μαζί το μέλλον της υγείας.</h3>
-        <p style="color: #555; line-height: 1.5; font-size: 15px;">Καλώς ήρθατε στην πύλη συνεργατών. Εδώ θα βρείτε επιστημονική τεκμηρίωση και άμεση πρόσβαση στο σύστημα παραγγελιών.</p>
+        <p style="color: #555; line-height: 1.5; font-size: 15px;">Καλώς ήρθατε στην πύλη συνεργατών. Εισάγετε τα στοιχεία σας για πρόσβαση στον κατάλογο και την παραγγελιοληψία.</p>
     </div>
+
     <div id="login-form">
         <input type="text" id="user-name" class="input-field" placeholder="Ονοματεπώνυμο" required>
         <input type="email" id="user-email" class="input-field" placeholder="Email Φαρμακείου" required>
@@ -89,8 +88,8 @@
                         <div class="card-container" style="border-top-color: #2E4600;">
                             <div class="card-padding">
                                 <h2 style="color: #2E4600; font-family: Georgia, serif;">Evidence-Based Φιλοσοφία</h2>
-                                <p style="font-size: 16px; color: #555;">Παρουσιάζουμε την πλήρη ανάλυση δραστικών συστατικών, σύμφωνα με τις οδηγίες σας για πλήρη ενημέρωση προϊόντων.</p>
-                                <a href="https://products-5yx5-git-main-pzaros-projects.vercel.app/" style="color: #7C9A64; font-weight: bold; text-decoration: none;">Δείτε τον Κατάλογο &rarr;</a>
+                                <p style="font-size: 16px; color: #555;">Πλήρης ανάλυση δραστικών συστατικών και άμεση πρόσβαση στο νέο σύστημα παραγγελιοληψίας.</p>
+                                <a href="https://my-order-form-steel.vercel.app/" style="color: #7C9A64; font-weight: bold; text-decoration: none;">Δείτε τον Κατάλογο &rarr;</a>
                             </div>
                         </div>
                     </td>
@@ -103,10 +102,7 @@
                                 <div class="card-padding">
                                     <h2 class="product-title">ALVEOLAIR SIR</h2>
                                     <img src="https://github.com/pzaro/zarkolia-images/blob/main/Alveolair%20Sir%20fonto.jpg?raw=true" class="product-img">
-                                    <div class="science-box">
-                                        <span class="science-title">ΒΑΣΙΚΑ ΣΥΣΤΑΤΙΚΑ</span>
-                                        <ul class="ing-list"><li>Αλθέα, Ευκάλυπτος, Θυμάρι, Κράνι, Ιπποφαές.</li></ul>
-                                    </div>
+                                    <div class="science-box"><span class="science-title">ΣΥΣΤΑΤΙΚΑ</span><p>Αλθέα, Ευκάλυπτος, Θυμάρι, Κράνι.</p></div>
                                     <div class="price-tag">ΧΤ: 7,65€ | ΛΤ: 12,80€</div>
                                 </div>
                             </div>
@@ -116,10 +112,7 @@
                                 <div class="card-padding">
                                     <h2 class="product-title">Z-BOOST CAPS</h2>
                                     <img src="https://github.com/pzaro/zarkolia-images/blob/main/Zboost%2030%20%CF%86%CE%BF%CE%BD%CF%84%CE%BF.jpg?raw=true" class="product-img">
-                                    <div class="science-box">
-                                        <span class="science-title">ΣΥΝΕΡΓΕΙΑ</span>
-                                        <ul class="ing-list"><li>NAC (300mg), Ψευδάργυρος, ALA, CoQ10.</li></ul>
-                                    </div>
+                                    <div class="science-box"><span class="science-title">ΣΥΝΕΡΓΕΙΑ</span><p>NAC (300mg), Ψευδάργυρος, ALA, CoQ10.</p></div>
                                     <div class="price-tag">ΧΤ: 14,93€ (30 caps)</div>
                                 </div>
                             </div>
@@ -134,8 +127,8 @@
                                 <div class="card-padding">
                                     <h2 class="product-title">ZPLAST CREAM</h2>
                                     <img src="https://github.com/pzaro/zarkolia-images/blob/main/zplast%20%CE%BC%CE%B5%20%CF%86%CE%BF%CE%BD%CF%84%CE%BF.jpg?raw=true" class="product-img">
-                                    <div class="science-box"><span class="science-title">ΔΡΑΣΗ</span><p>Μαστίχα, Βαλσαμόχορτο, Μέλι, Καλαμίνη.</p></div>
-                                    <div class="price-tag">ΛΤ: 20,50€ (40ml)</div>
+                                    <div class="science-box"><span class="science-title">ΔΡΑΣΗ</span><p>Μαστίχα, Βαλσαμόχορτο, Μέλι.</p></div>
+                                    <div class="price-tag">ΛΤ: 20,50€</div>
                                 </div>
                             </div>
                         </div>
@@ -144,50 +137,9 @@
                                 <div class="card-padding">
                                     <h2 class="product-title">BRUISE OFF GEL</h2>
                                     <img src="https://github.com/pzaro/zarkolia-images/blob/main/Bruise%20Off%20%CE%BC%CE%B5%20%CF%86%CF%8C%CE%BD%CF%84%CE%BF.jpg?raw=true" class="product-img">
-                                    <div class="science-box"><span class="science-title">ΜΗΧΑΝΙΣΜΟΣ</span><p>Ουρία 10%, Άρνικα 10%, Ριγανέλαιο.</p></div>
+                                    <div class="science-box"><span class="science-title">ΣΥΣΤΑΣΗ</span><p>Ουρία 10%, Άρνικα 10%, Ριγανέλαιο.</p></div>
                                     <div class="price-tag">ΛΤ: 8,80€</div>
                                 </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td style="font-size: 0; text-align: center; padding-bottom: 10px;">
-                        <div class="two-col" style="margin-right: 12px;">
-                            <div class="card-container">
-                                <div class="card-padding">
-                                    <h2 class="product-title">REVITACELL +</h2>
-                                    <img src="https://github.com/pzaro/zarkolia-images/blob/main/%CE%A1+.jpg?raw=true" class="product-img">
-                                    <div class="science-box"><span class="science-title">KLOTHO PROTEIN</span><p>Μαστίχα Χίου & Έλαιο Ροδιού.</p></div>
-                                    <div class="price-tag">ΧΤ: 10,69€ | ΛΤ: 17,90€</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="two-col">
-                            <div class="card-container">
-                                <div class="card-padding">
-                                    <h2 class="product-title">HYDRALIA</h2>
-                                    <img src="https://github.com/pzaro/zarkolia-images/blob/main/Hydralia%20fonto.jpg?raw=true" class="product-img">
-                                    <div class="science-box"><span class="science-title">ΕΝΥΔΑΤΩΣΗ</span><p>Υαλουρονικό & Έλαιο Jojoba.</p></div>
-                                    <div class="price-tag">ΧΤ: 8,90€ | ΛΤ: 14,90€</div>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td style="padding-bottom: 20px;">
-                        <div class="card-container">
-                            <div class="card-padding">
-                                <h2 class="product-title">ZPLAST TOTAL REPAIR</h2>
-                                <img src="https://github.com/pzaro/zarkolia-images/blob/main/Zplast%20Total%20Repair.jpeg?raw=true" class="product-img">
-                                <div class="science-box">
-                                    <span class="science-title">7 ΔΡΑΣΤΙΚΑ</span>
-                                    <p>Centella Asiatica, Μαστίχα, Μέλι, Σπαθόλαδο, Ιπποφαές, Αβοκάντο, Υαλουρονικό.</p>
-                                </div>
-                                <div class="price-tag">ΧΤ: 14,60€ | ΛΤ: 24,50€</div>
                             </div>
                         </div>
                     </td>
@@ -200,9 +152,8 @@
                                 <h2 class="product-title">NUTRI-MX ESSENTIALS</h2>
                                 <table class="table-markup">
                                     <tr><td>Probiotic Premium</td><td align="right">8,96€</td></tr>
-                                    <tr><td>Omega 3</td><td align="right">6,87€</td></tr>
-                                    <tr><td>Magnesium</td><td align="right">5,98€</td></tr>
-                                    <tr><td>A-Z Multivitamin</td><td align="right">6,51€</td></tr>
+                                    <tr><td>Omega 3 Pure</td><td align="right">6,87€</td></tr>
+                                    <tr><td>Magnesium Complex</td><td align="right">5,98€</td></tr>
                                 </table>
                             </div>
                         </div>
@@ -211,7 +162,7 @@
 
                 <tr>
                     <td align="center" style="padding: 30px 20px;">
-                        <a href="https://products-5yx5-git-main-pzaros-projects.vercel.app/" target="_blank" class="cta-button">Online Παραγγελία</a>
+                        <a href="https://my-order-form-steel.vercel.app/" target="_blank" class="cta-button">Online Παραγγελία</a>
                         <p style="font-size: 14px; color: #888; margin-top: 25px;">Zarkolia Health © 2025</p>
                     </td>
                 </tr>
@@ -248,8 +199,15 @@
         const name = document.getElementById("user-name").value;
         const email = document.getElementById("user-email").value;
         if(name && email) {
-            emailjs.send(SERVICE_ID, TEMPLATE_ID, { from_name: name, from_email: email, message: "Είσοδος στην πύλη Zarkolia." })
-            .then(unlockContent, unlockContent);
+            const btn = document.querySelector(".submit-btn");
+            btn.innerHTML = "Φόρτωση...";
+            btn.disabled = true;
+
+            emailjs.send(SERVICE_ID, TEMPLATE_ID, { 
+                from_name: name, 
+                from_email: email, 
+                message: "Είσοδος στην πύλη Zarkolia." 
+            }).then(unlockContent, unlockContent); // Ξεκλειδώνει απευθείας μετά το email
         } else { alert("Συμπληρώστε τα πεδία."); }
     }
 
