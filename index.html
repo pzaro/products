@@ -35,7 +35,7 @@
         font-weight: bold;
         color: #2E4600;
         font-family: Georgia, serif;
-        min-height: 40px; /* Για να μην πηδάει */
+        min-height: 40px;
         margin-bottom: 30px;
     }
     .cursor {
@@ -47,25 +47,9 @@
     }
     @keyframes blink { 50% { opacity: 0; } }
 
-    /* ΚΟΥΜΠΙΑ NAI/OXI */
-    .btn-group { display: none; /* Κρυφά αρχικά */ gap: 20px; margin-top: 20px; }
-    
-    .gate-btn {
-        padding: 12px 40px;
-        font-size: 18px;
-        border: 2px solid #2E4600;
-        border-radius: 30px;
-        cursor: pointer;
-        transition: all 0.3s;
-        background: transparent;
-        color: #2E4600;
-        font-weight: bold;
-    }
-    .gate-btn:hover { background-color: #2E4600; color: #fff; }
-    
-    /* ΦΟΡΜΑ ΣΤΟΙΧΕΙΩΝ (Κρυφή αρχικά) */
+    /* ΦΟΡΜΑ ΣΤΟΙΧΕΙΩΝ */
     #login-form {
-        display: none;
+        display: none; /* Εμφανίζεται μετά το typewriter */
         flex-direction: column;
         gap: 15px;
         width: 100%;
@@ -93,12 +77,11 @@
 
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* --- ΤΟ ΠΕΡΙΕΧΟΜΕΝΟ (Ο ΚΩΔΙΚΑΣ ΤΟΥ EMAIL) --- */
+    /* --- ΤΟ ΠΕΡΙΕΧΟΜΕΝΟ --- */
     #main-content {
-        display: none; /* Κρυφό μέχρι να γίνει login */
+        display: none;
     }
 
-    /* --- STYLES ΤΟΥ EMAIL ΚΩΔΙΚΑ --- */
     /* CLIENT-SPECIFIC STYLES */
     table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
     img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; display: block; }
@@ -141,7 +124,7 @@
     }
     .science-title { font-weight: bold; color: #556B2F; font-size: 11px; text-transform: uppercase; display: block; border-bottom: 1px solid #ddd; padding-bottom: 6px; margin-bottom: 8px; }
     
-    /* LIST STYLES IN BOXES */
+    /* LIST STYLES */
     .ing-list { padding-left: 15px; margin: 0; }
     .ing-list li { margin-bottom: 6px; }
     
@@ -162,7 +145,6 @@
         .product-img { height: auto !important; max-width: 220px !important; } 
         .card-container { height: auto !important; margin-bottom: 25px !important; }
     }
-
 </style>
 </head>
 <body>
@@ -174,13 +156,8 @@
         <span id="text-target"></span><span class="cursor"></span>
     </div>
 
-    <div class="btn-group" id="choice-buttons">
-        <button class="gate-btn" onclick="handleYes()">ΝΑΙ</button>
-        <button class="gate-btn" onclick="handleNo()">ΟΧΙ</button>
-    </div>
-
     <div id="login-form">
-        <p style="color:#555; font-size:14px; margin-bottom:5px;">Παρακαλώ συμπληρώστε τα στοιχεία σας:</p>
+        <p style="color:#555; font-size:14px; margin-bottom:5px;">Παρακαλώ συμπληρώστε τα στοιχεία σας για πρόσβαση:</p>
         <input type="text" id="user-name" class="input-field" placeholder="Ονοματεπώνυμο" required>
         <input type="email" id="user-email" class="input-field" placeholder="Email Φαρμακείου" required>
         <button class="submit-btn" onclick="submitForm()">Είσοδος</button>
@@ -209,7 +186,7 @@
                                 <p style="font-size: 16px; line-height: 1.6; color: #555;">
                                     Αγαπητοί συνεργάτες, σας παρουσιάζουμε την πλήρη ανάλυση των δραστικών συστατικών της σειράς μας, τεκμηριώνοντας γιατί αποτελούν την <strong>πρώτη επιλογή</strong> για εσάς και την οικογένειά σας.
                                 </p>
-                                <a href="https://fabulous-starlight-280edd.netlify.app/" style="color: #7C9A64; font-weight: bold; text-decoration: none; font-size: 15px;">Δείτε τον Κατάλογο &rarr;</a>
+                                <a href="https://products-5yx5-git-main-pzaros-projects.vercel.app/" style="color: #7C9A64; font-weight: bold; text-decoration: none; font-size: 15px;">Δείτε τον Κατάλογο &rarr;</a>
                             </div>
                         </div>
                     </td>
@@ -226,11 +203,10 @@
                                     <div class="science-box">
                                         <span class="science-title">ΑΝΑΛΥΣΗ ΣΥΣΤΑΤΙΚΩΝ</span>
                                         <ul class="ing-list">
-                                            <li><strong>Αλθέα (Βάμμα):</strong> Πλούσια σε βλεννώδεις ουσίες, δημιουργεί προστατευτικό φιλμ που καταπραΰνει τον ερεθισμό.</li>
-                                            <li><strong>Ευκάλυπτος:</strong> Μαλακτική δράση στο λαιμό και τις φωνητικές χορδές.</li>
-                                            <li><strong>Θυμάρι:</strong> Παραδοσιακό βοήθημα για τη ρευστοποίηση των εκκρίσεων.</li>
-                                            <li><strong>Κράνι (Cornus Mas):</strong> Στυπτική δράση που μειώνει το οίδημα των βλεννογόνων.</li>
-                                            <li><strong>Ιπποφαές:</strong> Υψηλή περιεκτικότητα σε φυσική Vit C για τόνωση.</li>
+                                            <li><strong>Αλθέα (Βάμμα):</strong> Πλούσια σε βλεννώδεις ουσίες.</li>
+                                            <li><strong>Ευκάλυπτος:</strong> Μαλακτική δράση.</li>
+                                            <li><strong>Θυμάρι:</strong> Ρευστοποίηση εκκρίσεων.</li>
+                                            <li><strong>Κράνι (Cornus Mas):</strong> Στυπτική δράση.</li>
                                         </ul>
                                     </div>
                                     <div class="price-tag">ΧΤ: 7,65€ | ΛΤ: 12,80€</div>
@@ -242,15 +218,14 @@
                                 <div class="card-padding">
                                     <h2 class="product-title">Z-BOOST CAPS</h2>
                                     <img src="https://github.com/pzaro/zarkolia-images/blob/main/Zboost%2030%20%CF%86%CE%BF%CE%BD%CF%84%CE%BF.jpg?raw=true" alt="Z-Boost" class="product-img">
-                                    <p class="product-desc">Πρωτόκολλο Αποκατάστασης & Κυτταρικής Ενέργειας.</p>
+                                    <p class="product-desc">Πρωτόκολλο Αποκατάστασης & Ενέργειας.</p>
                                     <div class="science-box">
                                         <span class="science-title">ΣΥΝΕΡΓΕΙΑ & HEALTH CLAIMS</span>
                                         <ul class="ing-list">
-                                            <li><strong>NAC (300mg):</strong> Πρόδρομος της Γλουταθειόνης (κύριο ενδογενές αντιοξειδωτικό) & βλεννολυτική δράση.</li>
-                                            <li><strong>Ψευδάργυρος & Σελήνιο:</strong> Συμβάλλουν στη φυσιολογική λειτουργία του ανοσοποιητικού (EFSA).</li>
-                                            <li><strong>ALA (Άλφα Λιποϊκό):</strong> "Universal Antioxidant", αναγεννά τις βιταμίνες C & E.</li>
-                                            <li><strong>CoQ10:</strong> Απαραίτητο για τη μιτοχονδριακή παραγωγή ενέργειας (ATP).</li>
-                                            <li><strong>Ginger:</strong> Αυξάνει τη βιοδιαθεσιμότητα και μειώνει τη φλεγμονή.</li>
+                                            <li><strong>NAC (300mg):</strong> Πρόδρομος Γλουταθειόνης.</li>
+                                            <li><strong>Ψευδάργυρος & Σελήνιο:</strong> Ανοσοποιητικό.</li>
+                                            <li><strong>ALA:</strong> Αναγεννά Vit C & E.</li>
+                                            <li><strong>CoQ10:</strong> Παραγωγή ATP.</li>
                                         </ul>
                                     </div>
                                     <div class="price-tag">ΧΤ: 14,93€ (30 caps)</div>
@@ -261,239 +236,8 @@
                 </tr>
 
                 <tr>
-                    <td style="font-size: 0; text-align: center; padding-bottom: 10px;">
-                        <div class="two-col" style="margin-right: 12px;">
-                            <div class="card-container">
-                                <div class="card-padding">
-                                    <h2 class="product-title">ZPLAST CREAM</h2>
-                                    <img src="https://github.com/pzaro/zarkolia-images/blob/main/zplast%20%CE%BC%CE%B5%20%CF%86%CE%BF%CE%BD%CF%84%CE%BF.jpg?raw=true" alt="Zplast" class="product-img">
-                                    <p class="product-desc"><strong>Πολυδύναμη Επανα-επιθηλιοποίηση</strong> (8 Δραστικά).</p>
-                                    <div class="science-box">
-                                        <span class="science-title">1. ΑΝΤΙΜΙΚΡΟΒΙΑΚΗ & ΕΠΟΥΛΩΤΙΚΗ</span>
-                                        <ul class="ing-list">
-                                            <li><strong>Μαστίχα:</strong> Φυσική προστασία (Gram+/-).</li>
-                                            <li><strong>Hypericum (Βαλσαμόχορτο):</strong> Επιταχύνει την κοκκιοποίηση.</li>
-                                            <li><strong>Μέλι:</strong> Υγροσκοπικό περιβάλλον επούλωσης.</li>
-                                        </ul>
-                                        <span class="science-title" style="margin-top:10px;">2. ΑΝΤΙΚΝΗΣΜΩΔΗΣ & ΚΑΤΑΠΡΑΫΝΤΙΚΗ</span>
-                                        <ul class="ing-list">
-                                            <li><strong>Καλαμίνη:</strong> Άμεση ανακούφιση από κνησμό.</li>
-                                            <li><strong>Καλέντουλα & Zea Mays:</strong> Μείωση ερεθισμών.</li>
-                                        </ul>
-                                        <span class="science-title" style="margin-top:10px;">3. ΘΡΕΨΗ & ΦΡΑΓΜΟΣ</span>
-                                        <ul class="ing-list">
-                                            <li><strong>Ιπποφαές (Ω-7) & Αβοκάντο:</strong> Βαθιά ανάπλαση λιπιδίων.</li>
-                                        </ul>
-                                    </div>
-                                    <div class="price-tag">ΛΤ: 20,50€ (40ml)</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="two-col">
-                            <div class="card-container">
-                                <div class="card-padding">
-                                    <h2 class="product-title">BRUISE OFF GEL</h2>
-                                    <img src="https://github.com/pzaro/zarkolia-images/blob/main/Bruise%20Off%20%CE%BC%CE%B5%20%CF%86%CF%8C%CE%BD%CF%84%CE%BF.jpg?raw=true" alt="Bruise Off" class="product-img">
-                                    <p class="product-desc">Τεχνολογία Διείσδυσης για Μώλωπες & Οιδήματα.</p>
-                                    <div class="science-box">
-                                        <span class="science-title">ΜΗΧΑΝΙΣΜΟΣ ΔΡΑΣΗΣ</span>
-                                        <ul class="ing-list">
-                                            <li><strong>Ουρία 10% (Penetration Enhancer):</strong> Κερατολυτική δράση που επιτρέπει στην Άρνικα να διεισδύσει βαθύτερα στον ιστό.</li>
-                                            <li><strong>Άρνικα 10%:</strong> Ισχυρή αντιοιδηματική δράση, επιταχύνει την απορρόφηση των εκχυμώσεων.</li>
-                                            <li><strong>Ριγανέλαιο:</strong> Προκαλεί τοπική υπεραιμία (warming effect) για άμεση ανακούφιση.</li>
-                                            <li><strong>Μελισσόχορτο:</strong> Καταπράυνση του πόνου.</li>
-                                        </ul>
-                                    </div>
-                                    <div class="price-tag">ΛΤ: 9,40€</div>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td style="font-size: 0; text-align: center; padding-bottom: 10px;">
-                        <div class="two-col" style="margin-right: 12px;">
-                            <div class="card-container">
-                                <div class="card-padding">
-                                    <h2 class="product-title">REVITACELL +</h2>
-                                    <img src="https://github.com/pzaro/zarkolia-images/blob/main/%CE%A1+.jpg?raw=true" alt="Revitacell" class="product-img">
-                                    <p class="product-desc">Επιγενετική Καινοτομία <strong>(Klotho Protein)</strong>.</p>
-                                    <div class="science-box" style="border-left-color: #d88d8d;">
-                                        <span class="science-title">ΚΥΤΤΑΡΙΚΗ ΜΑΚΡΟΖΩΙΑ</span>
-                                        <ul class="ing-list">
-                                            <li><strong>Μαστίχα Χίου:</strong> Κλινικά αποδεδειγμένη αύξηση της πρωτεΐνης νεότητας Klotho στους ινοβλάστες.</li>
-                                            <li><strong>Έλαιο Ροδιού:</strong> Ισχυρή αντιοξειδωτική προστασία του δικτύου κολλαγόνου.</li>
-                                        </ul>
-                                    </div>
-                                    <div class="price-tag">XΤ: 10,69€ | ΛΤ: 17,90€</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="two-col">
-                            <div class="card-container">
-                                <div class="card-padding">
-                                    <h2 class="product-title">HYDRALIA</h2>
-                                    <img src="https://github.com/pzaro/zarkolia-images/blob/main/Hydralia%20fonto.jpg?raw=true" alt="Hydralia" class="product-img">
-                                    <p class="product-desc">Βιομιμητική Ενυδάτωση <strong>(Jojoba Oil)</strong>.</p>
-                                    <div class="science-box" style="border-left-color: #87cefa;">
-                                        <span class="science-title">ΥΔΑΤΙΚΟ ΙΣΟΖΥΓΙΟ</span>
-                                        <ul class="ing-list">
-                                            <li><strong>Υαλουρονικό Οξύ:</strong> Συγκρατεί έως και 1000 φορές το βάρος του σε νερό.</li>
-                                            <li><strong>Έλαιο Jojoba:</strong> Βιομιμητικό λιπίδιο (υγρό κερί) με δομή όμοια με το ανθρώπινο σμήγμα. Απορροφάται άμεσα χωρίς λιπαρότητα.</li>
-                                        </ul>
-                                    </div>
-                                    <div class="price-tag">XΤ: 8,90€ | ΛΤ: 14,90€</div>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td style="padding-bottom: 20px;">
-                        <div class="card-container">
-                            <div class="card-padding">
-                                <h2 class="product-title">REVITACELL EYES</h2>
-                                <img src="https://github.com/pzaro/zarkolia-images/blob/main/Revitacell%20Eyes%20%CF%86%CE%BF%CE%BD%CF%84%CE%BF.jpg?raw=true" alt="Eyes" class="product-img" style="max-width: 280px; height: auto;">
-                                <p class="product-desc">Η λύση για <strong>Μαύρους Κύκλους & Οίδημα</strong>.</p>
-                                <div class="science-box" style="border-left-color: #dda0dd;">
-                                    <span class="science-title">ΣΤΟΧΕΥΜΕΝΗ ΔΡΑΣΗ</span>
-                                    <ul class="ing-list">
-                                        <li><strong>Ιπποκαστανιά (Escin):</strong> Βελτιώνει τη μικροκυκλοφορία, μειώνοντας τους μαύρους κύκλους.</li>
-                                        <li><strong>Άρνικα:</strong> Αποσυμφορητική δράση ενάντια στο οίδημα (σακούλες).</li>
-                                        <li><strong>Υαλουρονικό:</strong> Γεμίζει τις λεπτές γραμμές ("πόδι χήνας").</li>
-                                    </ul>
-                                </div>
-                                <div class="price-tag" style="display:inline-block;">XΤ: 10,10€ | ΛΤ: 16,91€</div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td style="padding-bottom: 20px;">
-                        <div class="card-container">
-                            <div class="card-padding">
-                                <h2 class="product-title">ZPLAST TOTAL REPAIR</h2>
-                                <img src="https://github.com/pzaro/zarkolia-images/blob/main/Zplast%20Total%20Repair.jpeg?raw=true" alt="Zplast Total Repair" class="product-img">
-                                <p class="product-desc">Η Επόμενη Μέρα στην Εντατική Ανάπλαση.</p>
-                                <p style="font-size: 14px; color: #555; margin-bottom: 10px;">
-                                    Προηγμένη σύνθεση <strong>7 Δραστικών Συστατικών</strong> για ολιστική αποκατάσταση σε δέρμα που έχει υποστεί καταπόνηση.
-                                </p>
-                                
-                                <div class="science-box">
-                                    <span class="science-title">ΚΑΙΝΟΤΟΜΙΑ ΣΥΝΕΡΓΕΙΑΣ</span>
-                                    <ul class="ing-list">
-                                        <li><strong>Centella Asiatica (Cica):</strong> Κορυφαίο συστατικό επανεπιθηλίωσης. Διεγείρει το κολλαγόνο και ελαχιστοποιεί τις ουλές (Bylka et al., 2013).</li>
-                                        <li><strong>Μαστίχα & Μέλι:</strong> Ισχυρή αντισηπτική ασπίδα & αντιφλεγμονώδης δράση (Kottaridi et al., 2023).</li>
-                                        <li><strong>Βαλσαμόχορτο (Σπαθόλαδο):</strong> Ταχεία ανακούφιση και ανάπλαση σε εγκαύματα/εκδορές (Süntar et al., 2010).</li>
-                                        <li><strong>Ιπποφαές & Αβοκάντο:</strong> Πλούσια σε Ω-7 για βαθιά θρέψη και αποκατάσταση ελαστικότητας.</li>
-                                        <li><strong>Υαλουρονικό Οξύ:</strong> Δομική συνοχή και ενυδάτωση των ιστών.</li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="science-box" style="margin-top: 10px; border-left-color: #2E4600; background-color: #f4f8f4;">
-                                    <span class="science-title">ΙΣΧΥΡΙΣΜΟΙ ΔΡΑΣΗΣ</span>
-                                    <ul class="ing-list">
-                                        <li><strong>Επιτάχυνση Ανάπλασης:</strong> Ορατή βελτίωση υφής.</li>
-                                        <li><strong>Καταπραϋντική Δράση:</strong> Άμεση μείωση ερυθρότητας.</li>
-                                        <li><strong>Ενίσχυση Φραγμού:</strong> Προστασία από εξωτερικούς ρύπους.</li>
-                                    </ul>
-                                </div>
-
-                                <div class="price-tag">ΧΤ: 14,60€ | ΛΤ: 24,50€</div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td style="padding-bottom: 20px;">
-                        <div class="card-container" style="border: 2px dashed #7C9A64; background-color: #EDF2EA; box-shadow: none;">
-                            <div class="card-padding">
-                                <h2 class="product-title" style="color: #2E4600;">🎁 ΠΑΚΕΤΟ ΟΜΟΡΦΙΑΣ</h2>
-                                <img src="https://github.com/pzaro/zarkolia-images/blob/main/Zarkolia%20Cosmetic%20Pack%201.jpg?raw=true" alt="Pack" class="product-img" style="max-width: 320px; height: auto;">
-                                <p class="product-desc">Η ολοκληρωμένη πρόταση δώρου.</p>
-                                <div style="font-size: 28px; font-weight: bold; color: #2E4600; margin-top: 10px;">ΧΤ: 23,80 €</div>
-                                <div style="font-size: 15px; color: #666;">(Προτεινόμενη ΛΤ: 40,00 €)</div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td style="padding-bottom: 20px;">
-                        <div class="card-container">
-                            <div class="card-padding">
-                                <h2 class="product-title">NUTRI-MX ESSENTIALS</h2>
-                                <p class="product-desc" style="font-size:14px; margin-bottom:10px;">High-rotation συμπληρώματα για καθημερινή ροή.</p>
-                                <table class="table-markup">
-                                    <tr style="background-color: #fcfcfc;">
-                                        <td><strong>Probiotic Premium</strong> (10 δις)</td>
-                                        <td align="right">ΧΤ:8,96€</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Omega 3</strong> (Fish Oil)</td>
-                                        <td align="right">ΧΤ:6,87€</td>
-                                    </tr>
-                                    <tr style="background-color: #fcfcfc;">
-                                        <td><strong>Joint Formula</strong></td>
-                                        <td align="right">ΧΤ:10,16€</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Magnesium</strong></td>
-                                        <td align="right">ΧΤ:5,98€</td>
-                                    </tr>
-                                    <tr style="background-color: #fcfcfc;">
-                                        <td><strong>A-Z Multivitamin</strong></td>
-                                        <td align="right">ΧΤ:6,51€</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <div class="card-container" style="border-top-color: #2E4600; background-color: #FDFDFD;">
-                            <div class="card-padding">
-                                <h3 style="margin-top:0; color:#2E4600; font-size: 22px; font-family: Georgia, serif;">ΤΩΡΑ ΧΤΙΣΤΕ ΤΗΝ ΕΚΠΤΩΣΗ ΣΑΣ</h3>
-                                <p style="color: #666; font-size: 14px; margin-bottom: 20px;">Συνδυάστε τις παροχές για μέγιστη κερδοφορία:</p>
-                                
-                                <div style="background-color: #f4f8f4; border: 1px solid #dcebdc; border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: left;">
-                                    <div style="font-weight: bold; color: #2E4600; font-size: 16px; margin-bottom: 8px;">Α. ΠΡΟΪΟΝΤΙΚΗ ΠΡΟΣΦΟΡΑ</div>
-                                    <ul style="margin: 0; padding-left: 20px; color: #444; font-size: 15px;">
-                                        <li style="margin-bottom: 5px;"><strong>9 + 1</strong> Δώρο</li>
-                                        <li style="margin-bottom: 5px;"><strong>18 + 3</strong> Δώρο</li>
-                                        <li><strong>24 + 6</strong> Δώρο</li>
-                                    </ul>
-                                </div>
-
-                                <div style="background-color: #fff9f0; border: 1px solid #faeccd; border-radius: 8px; padding: 15px; margin-bottom: 15px; text-align: left;">
-                                    <div style="font-weight: bold; color: #d68a00; font-size: 16px; margin-bottom: 8px;">Β. ΕΚΠΤΩΣΗ ΤΖΙΡΟΥ</div>
-                                    <p style="margin: 0; font-size: 14px; color: #444;">
-                                        Κερδίστε <strong>1% επιπλέον</strong> για κάθε 100€ παραγγελίας.<br>
-                                        <span style="font-size: 12px; color: #777;">(Ισχύει από 200€ και άνω, με μέγιστο το 10%)</span>
-                                    </p>
-                                </div>
-
-                                <div style="background-color: #f0f7ff; border: 1px solid #cce5ff; border-radius: 8px; padding: 15px; text-align: left;">
-                                    <div style="font-weight: bold; color: #0056b3; font-size: 16px; margin-bottom: 8px;">Γ. ΕΚΠΤΩΣΗ ΜΕΤΡΗΤΟΙΣ</div>
-                                    <p style="margin: 0; font-size: 14px; color: #444;">
-                                        Κερδίστε επιπλέον <strong>2%</strong> για πληρωμή τοις μετρητοίς.
-                                    </p>
-                                </div>
-
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr>
                     <td align="center" style="padding: 30px 20px;">
-                        <a href="https://fabulous-starlight-280edd.netlify.app/" target="_blank" class="cta-button">Online Παραγγελία</a>
+                        <a href="https://products-5yx5-git-main-pzaros-projects.vercel.app/" target="_blank" class="cta-button">Online Παραγγελία</a>
                         <p style="font-size: 14px; color: #888; margin-top: 25px;">
                             <strong>Zarkolia Health</strong> © 2025
                         </p>
@@ -507,7 +251,6 @@
 </div>
 
 <script>
-    // --- ΡΥΘΜΙΣΕΙΣ EMAILJS ---
     const SERVICE_ID = "service_ygsdcud"; 
     const TEMPLATE_ID = "template_zrmjoa4";
     const PUBLIC_KEY = "J_DaEzTUYRLMkupgD";
@@ -516,8 +259,8 @@
         emailjs.init(PUBLIC_KEY);
     })();
 
-    // --- TYPEWRITER EFFECT ---
-    const text = "Είστε Φαρμακοποιός;";
+    // --- TYPEWRITER EFFECT (ΑΛΛΑΓΜΕΝΟ) ---
+    const text = "Καλώς ήρθατε στη Zarkolia Health.";
     const target = document.getElementById("text-target");
     let i = 0;
 
@@ -525,27 +268,16 @@
         if (i < text.length) {
             target.innerHTML += text.charAt(i);
             i++;
-            setTimeout(typeWriter, 100); 
+            setTimeout(typeWriter, 60); 
         } else {
             setTimeout(() => {
-                document.getElementById("choice-buttons").style.display = "flex";
+                document.getElementById("login-form").style.display = "flex";
                 document.querySelector(".cursor").style.display = "none";
             }, 500);
         }
     }
 
     window.onload = typeWriter;
-
-    // --- LOGIC ---
-    function handleYes() {
-        document.getElementById("choice-buttons").style.display = "none";
-        document.getElementById("login-form").style.display = "flex";
-        document.getElementById("text-target").innerHTML = "Καλώς ήρθατε. <br><span style='font-size:18px; font-weight:normal;'>Παρακαλώ εισάγετε τα στοιχεία σας για πρόσβαση.</span>";
-    }
-
-    function handleNo() {
-        document.getElementById("gate-container").innerHTML = "<h2 style='color:#555;'>Η πρόσβαση επιτρέπεται μόνο σε επαγγελματίες υγείας.</h2>";
-    }
 
     function submitForm() {
         const name = document.getElementById("user-name").value;
@@ -560,18 +292,15 @@
                 to_name: "Panagiotis",
                 from_name: name,
                 from_email: email,
-                message: "Νέα είσοδος φαρμακοποιού στη σελίδα Zarkolia Update."
+                message: "Νέα είσοδος συνεργάτη στη σελίδα Zarkolia Update."
             };
 
             emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
-                .then(function(response) {
-                    console.log('SUCCESS!', response.status, response.text);
+                .then(function() {
                     unlockContent();
-                }, function(error) {
-                    console.log('FAILED...', error);
+                }, function() {
                     unlockContent(); 
                 });
-
         } else {
             alert("Παρακαλώ συμπληρώστε όλα τα πεδία.");
         }
@@ -589,4 +318,3 @@
 
 </body>
 </html>
-
